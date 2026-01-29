@@ -8,6 +8,11 @@
 
 import Foundation
 import SwiftUI
+#if os(macOS)
+import AppKit
+#else
+import UIKit
+#endif
 
 // MARK: - Dashboard URL
 
@@ -466,9 +471,15 @@ extension Color {
     }
 
     var hexString: String {
+        #if os(macOS)
         guard let components = NSColor(self).cgColor.components, components.count >= 3 else {
             return "#000000"
         }
+        #else
+        guard let components = UIColor(self).cgColor.components, components.count >= 3 else {
+            return "#000000"
+        }
+        #endif
         let r = Int(components[0] * 255)
         let g = Int(components[1] * 255)
         let b = Int(components[2] * 255)

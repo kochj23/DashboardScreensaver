@@ -7,15 +7,15 @@
 //
 
 import SwiftUI
-#if os(tvOS)
-import TVUIKit
-#endif
+import Darwin
 
 struct TVContentView: View {
     @EnvironmentObject var configServer: ConfigurationServer
     @EnvironmentObject var dashboardManager: TVDashboardManager
 
     @State private var showSettings = false
+    @State private var dashboardImage: UIImage?
+    @State private var isLoading = false
 
     var body: some View {
         ZStack {
@@ -47,6 +47,13 @@ struct TVContentView: View {
 
                 Spacer()
             }
+
+            // Loading overlay
+            if isLoading {
+                ProgressView()
+                    .scaleEffect(2)
+                    .progressViewStyle(CircularProgressViewStyle(tint: .cyan))
+            }
         }
         .focusable()
         .onPlayPauseCommand {
@@ -60,10 +67,20 @@ struct TVContentView: View {
             switch direction {
             case .left:
                 dashboardManager.previousDashboard()
+                loadCurrentDashboard()
             case .right:
                 dashboardManager.nextDashboard()
+                loadCurrentDashboard()
             default:
                 break
+            }
+        }
+        .onChange(of: dashboardManager.currentIndex) { _, _ in
+            loadCurrentDashboard()
+        }
+        .onAppear {
+            if !dashboardManager.urls.isEmpty {
+                loadCurrentDashboard()
             }
         }
     }
@@ -108,8 +125,30 @@ struct TVContentView: View {
 
     private var dashboardView: some View {
         Group {
-            if let url = dashboardManager.currentURL {
-                TVWebView(url: url, enableDarkMode: dashboardManager.settings.enableDarkMode)
+            if let image = dashboardImage {
+                Image(uiImage: image)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+            } else {
+                VStack(spacing: 20) {
+                    if let url = dashboardManager.currentURL {
+                        Text(url.host ?? url.absoluteString)
+                            .font(.system(size: 36, weight: .bold, design: .rounded))
+                            .foregroundColor(.white)
+
+                        Text(url.absoluteString)
+                            .font(.system(size: 18, design: .monospaced))
+                            .foregroundColor(.white.opacity(0.6))
+                            .lineLimit(2)
+                    }
+
+                    Text("Dashboard \(dashboardManager.currentIndex + 1)")
+                        .font(.system(size: 24))
+                        .foregroundColor(.cyan)
+                }
+                .padding(40)
+                .background(Color.white.opacity(0.05))
+                .cornerRadius(20)
             }
         }
     }
@@ -138,6 +177,23 @@ struct TVContentView: View {
             .padding(.vertical, 8)
             .background(Color.black.opacity(0.5))
             .cornerRadius(20)
+    }
+
+    // MARK: - Methods
+
+    private func loadCurrentDashboard() {
+        guard let url = dashboardManager.currentURL else { return }
+
+        isLoading = true
+
+        // Try to load a screenshot from a screenshot service
+        // Format: https://your-server/screenshot?url=<dashboard-url>
+        // For now, we'll just display the URL info since tvOS can't render web pages directly
+
+        // Simulate loading
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            isLoading = false
+        }
     }
 
     private func getIPAddress() -> String? {
@@ -173,68 +229,6 @@ struct TVContentView: View {
         }
 
         return address
-    }
-}
-
-// MARK: - TV WebView
-
-import WebKit
-
-struct TVWebView: UIViewRepresentable {
-    let url: URL
-    let enableDarkMode: Bool
-
-    func makeUIView(context: Context) -> WKWebView {
-        let configuration = WKWebViewConfiguration()
-        configuration.allowsInlineMediaPlayback = true
-
-        let webView = WKWebView(frame: .zero, configuration: configuration)
-        webView.navigationDelegate = context.coordinator
-        webView.scrollView.isScrollEnabled = true
-
-        return webView
-    }
-
-    func updateUIView(_ webView: WKWebView, context: Context) {
-        if webView.url != url {
-            let request = URLRequest(url: url)
-            webView.load(request)
-        }
-    }
-
-    func makeCoordinator() -> Coordinator {
-        Coordinator(self)
-    }
-
-    class Coordinator: NSObject, WKNavigationDelegate {
-        let parent: TVWebView
-
-        init(_ parent: TVWebView) {
-            self.parent = parent
-        }
-
-        func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-            if parent.enableDarkMode {
-                let css = """
-                    body { background-color: #1a1a1a !important; color: #e0e0e0 !important; }
-                    * { background-color: inherit !important; color: inherit !important; border-color: #444 !important; }
-                """
-
-                let js = """
-                    (function() {
-                        var style = document.getElementById('dashboard-dark-mode');
-                        if (!style) {
-                            style = document.createElement('style');
-                            style.id = 'dashboard-dark-mode';
-                            document.head.appendChild(style);
-                        }
-                        style.textContent = `\(css)`;
-                    })();
-                """
-
-                webView.evaluateJavaScript(js) { _, _ in }
-            }
-        }
     }
 }
 
