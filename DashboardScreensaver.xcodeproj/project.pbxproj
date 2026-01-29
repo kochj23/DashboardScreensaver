@@ -1,0 +1,555 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		105ABBC4DF38F3CE9062A54E /* DashboardTVApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48DB3237B08C5E3776913660 /* DashboardTVApp.swift */; };
+		1D24E0B71DBE50A0AA78D79E /* TVContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B4D2D9B2608545132AC05F /* TVContentView.swift */; };
+		2D19A5B937ACAB34E6797A94 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8CBFC0899441D77CA138C0B /* SettingsView.swift */; };
+		32DBF249E4464B63F0B0838E /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B045E63F487648F70EC547B /* Models.swift */; };
+		477120A93DC7E57FA4EC1C36 /* DashboardWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED398E04B033361025CF9964 /* DashboardWebView.swift */; };
+		5D7D9CBAD5B4E485FCC14B56 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D49D31635CDABC0CA5DC9A28 /* Assets.xcassets */; };
+		5F87F73476D5B53868842EB9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F41AD9D81A1375D34D74C35 /* ContentView.swift */; };
+		7C88D468E1DE8A1CD7C8DB10 /* ModernDesign.swift in Sources */ = {isa = PBXBuildFile; fileRef = F480C68AC7FA13A45BFA4175 /* ModernDesign.swift */; };
+		7F1188E2B07918A1F356D9C5 /* DashboardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3CDA8E3C22C79D2F262D64 /* DashboardManager.swift */; };
+		7F48999C87769CB494BC605D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C6FF8A50637D1846D995C6C5 /* Assets.xcassets */; };
+		7FC4EF532C0B0BDABE3B0CEF /* AIAlertDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9394EFC16B9F0334A9732C7D /* AIAlertDetector.swift */; };
+		82DB4A843732E3C265AF0E7C /* URLManagerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C4E891DA864F48C0B8C5001 /* URLManagerView.swift */; };
+		ACF21098FBFC1B37632250FB /* ModernDesign.swift in Sources */ = {isa = PBXBuildFile; fileRef = F480C68AC7FA13A45BFA4175 /* ModernDesign.swift */; };
+		BBB5CB297951C21CC16DDEE9 /* DashboardScreensaverApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF1E507166B2C93B959BF1C /* DashboardScreensaverApp.swift */; };
+		C06A199939CFE95AD428EAC0 /* HealthMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403F59446C490BA0E3DCF8B9 /* HealthMonitor.swift */; };
+		C63272AC6A256A935E956ECD /* AppleTVDiscovery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859E3F99158981F8890007CD /* AppleTVDiscovery.swift */; };
+		EC75110E44EDD2D56A8A5BE1 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B045E63F487648F70EC547B /* Models.swift */; };
+		EC97A89C21C10852D8E25483 /* PowerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8BB74A82649C71B20F1D6F /* PowerManager.swift */; };
+		F23426BBBAEB7B22C9C9C99B /* AppleTVManagerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72AEF92D2142022EAFDF3349 /* AppleTVManagerView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1B045E63F487648F70EC547B /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		2F41AD9D81A1375D34D74C35 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		33B4D2D9B2608545132AC05F /* TVContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVContentView.swift; sourceTree = "<group>"; };
+		3E8BB74A82649C71B20F1D6F /* PowerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerManager.swift; sourceTree = "<group>"; };
+		3EF1E507166B2C93B959BF1C /* DashboardScreensaverApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardScreensaverApp.swift; sourceTree = "<group>"; };
+		403F59446C490BA0E3DCF8B9 /* HealthMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthMonitor.swift; sourceTree = "<group>"; };
+		475D7972370BC30DF56635B3 /* DashboardScreensaver.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DashboardScreensaver.entitlements; sourceTree = "<group>"; };
+		48DB3237B08C5E3776913660 /* DashboardTVApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardTVApp.swift; sourceTree = "<group>"; };
+		72AEF92D2142022EAFDF3349 /* AppleTVManagerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleTVManagerView.swift; sourceTree = "<group>"; };
+		73F10C02BACBE859CCD4DB03 /* DashboardScreensaver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DashboardScreensaver.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7B3CDA8E3C22C79D2F262D64 /* DashboardManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardManager.swift; sourceTree = "<group>"; };
+		859E3F99158981F8890007CD /* AppleTVDiscovery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleTVDiscovery.swift; sourceTree = "<group>"; };
+		8C4E891DA864F48C0B8C5001 /* URLManagerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLManagerView.swift; sourceTree = "<group>"; };
+		9394EFC16B9F0334A9732C7D /* AIAlertDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIAlertDetector.swift; sourceTree = "<group>"; };
+		B0990B8A598E0D5928B9C68F /* DashboardTV.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = DashboardTV.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C6FF8A50637D1846D995C6C5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D49D31635CDABC0CA5DC9A28 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		ED398E04B033361025CF9964 /* DashboardWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardWebView.swift; sourceTree = "<group>"; };
+		F480C68AC7FA13A45BFA4175 /* ModernDesign.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModernDesign.swift; sourceTree = "<group>"; };
+		F8CBFC0899441D77CA138C0B /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		0B5531AC76FE68199FF68FB1 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				33B4D2D9B2608545132AC05F /* TVContentView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		1A721535794F41C4732A529C /* AI */ = {
+			isa = PBXGroup;
+			children = (
+				9394EFC16B9F0334A9732C7D /* AIAlertDetector.swift */,
+			);
+			path = AI;
+			sourceTree = "<group>";
+		};
+		2F8C05C23456DCBC6368B19A /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				859E3F99158981F8890007CD /* AppleTVDiscovery.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		4145153E619410A35FB39E41 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				7B3CDA8E3C22C79D2F262D64 /* DashboardManager.swift */,
+				403F59446C490BA0E3DCF8B9 /* HealthMonitor.swift */,
+				3E8BB74A82649C71B20F1D6F /* PowerManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		73F0A9B5F0429E0D390F0843 /* DashboardScreensaver */ = {
+			isa = PBXGroup;
+			children = (
+				1A721535794F41C4732A529C /* AI */,
+				4145153E619410A35FB39E41 /* Managers */,
+				A9DCD51B71B6AE9D48D5B65A /* Models */,
+				2F8C05C23456DCBC6368B19A /* Network */,
+				D91682FC55EE4A0CFCAE4CB5 /* Views */,
+				D49D31635CDABC0CA5DC9A28 /* Assets.xcassets */,
+				475D7972370BC30DF56635B3 /* DashboardScreensaver.entitlements */,
+				3EF1E507166B2C93B959BF1C /* DashboardScreensaverApp.swift */,
+			);
+			path = DashboardScreensaver;
+			sourceTree = "<group>";
+		};
+		8FE455D96EF786B319524EFF /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				1B045E63F487648F70EC547B /* Models.swift */,
+				F480C68AC7FA13A45BFA4175 /* ModernDesign.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		974EC14929E52CD892D42B9F /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		A9DCD51B71B6AE9D48D5B65A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		C5544341614F3074513E4E61 = {
+			isa = PBXGroup;
+			children = (
+				73F0A9B5F0429E0D390F0843 /* DashboardScreensaver */,
+				FA71AD29D8DF1E9C780F56AB /* DashboardTV */,
+				8FE455D96EF786B319524EFF /* Shared */,
+				D5CFB4C6AA1322BF76B15CD4 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D5CFB4C6AA1322BF76B15CD4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				73F10C02BACBE859CCD4DB03 /* DashboardScreensaver.app */,
+				B0990B8A598E0D5928B9C68F /* DashboardTV.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D91682FC55EE4A0CFCAE4CB5 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				72AEF92D2142022EAFDF3349 /* AppleTVManagerView.swift */,
+				2F41AD9D81A1375D34D74C35 /* ContentView.swift */,
+				ED398E04B033361025CF9964 /* DashboardWebView.swift */,
+				F8CBFC0899441D77CA138C0B /* SettingsView.swift */,
+				8C4E891DA864F48C0B8C5001 /* URLManagerView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		FA71AD29D8DF1E9C780F56AB /* DashboardTV */ = {
+			isa = PBXGroup;
+			children = (
+				974EC14929E52CD892D42B9F /* Managers */,
+				0B5531AC76FE68199FF68FB1 /* Views */,
+				C6FF8A50637D1846D995C6C5 /* Assets.xcassets */,
+				48DB3237B08C5E3776913660 /* DashboardTVApp.swift */,
+			);
+			path = DashboardTV;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2D53F548E8DF84E2B7F3BD3D /* DashboardScreensaver */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E2133CD26B9C8D047A220E7F /* Build configuration list for PBXNativeTarget "DashboardScreensaver" */;
+			buildPhases = (
+				30F779DC2B54C05CEB78326A /* Sources */,
+				79D6E821DE850781A499CD69 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DashboardScreensaver;
+			packageProductDependencies = (
+			);
+			productName = DashboardScreensaver;
+			productReference = 73F10C02BACBE859CCD4DB03 /* DashboardScreensaver.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E3B514B7DECB54E209F8A502 /* DashboardTV */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4AA907C7BAB535F4F197ECE3 /* Build configuration list for PBXNativeTarget "DashboardTV" */;
+			buildPhases = (
+				2CF392B812FB5E813D460ECB /* Sources */,
+				A61B7C7107FF92023359101B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DashboardTV;
+			packageProductDependencies = (
+			);
+			productName = DashboardTV;
+			productReference = B0990B8A598E0D5928B9C68F /* DashboardTV.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		576AAA6CCABDA438C9D42C17 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					2D53F548E8DF84E2B7F3BD3D = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Automatic;
+					};
+					E3B514B7DECB54E209F8A502 = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 0C188ECBDAA69420C64074FF /* Build configuration list for PBXProject "DashboardScreensaver" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = C5544341614F3074513E4E61;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2D53F548E8DF84E2B7F3BD3D /* DashboardScreensaver */,
+				E3B514B7DECB54E209F8A502 /* DashboardTV */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		79D6E821DE850781A499CD69 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5D7D9CBAD5B4E485FCC14B56 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A61B7C7107FF92023359101B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7F48999C87769CB494BC605D /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2CF392B812FB5E813D460ECB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				105ABBC4DF38F3CE9062A54E /* DashboardTVApp.swift in Sources */,
+				32DBF249E4464B63F0B0838E /* Models.swift in Sources */,
+				7C88D468E1DE8A1CD7C8DB10 /* ModernDesign.swift in Sources */,
+				1D24E0B71DBE50A0AA78D79E /* TVContentView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		30F779DC2B54C05CEB78326A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7FC4EF532C0B0BDABE3B0CEF /* AIAlertDetector.swift in Sources */,
+				C63272AC6A256A935E956ECD /* AppleTVDiscovery.swift in Sources */,
+				F23426BBBAEB7B22C9C9C99B /* AppleTVManagerView.swift in Sources */,
+				5F87F73476D5B53868842EB9 /* ContentView.swift in Sources */,
+				7F1188E2B07918A1F356D9C5 /* DashboardManager.swift in Sources */,
+				BBB5CB297951C21CC16DDEE9 /* DashboardScreensaverApp.swift in Sources */,
+				477120A93DC7E57FA4EC1C36 /* DashboardWebView.swift in Sources */,
+				C06A199939CFE95AD428EAC0 /* HealthMonitor.swift in Sources */,
+				EC75110E44EDD2D56A8A5BE1 /* Models.swift in Sources */,
+				ACF21098FBFC1B37632250FB /* ModernDesign.swift in Sources */,
+				EC97A89C21C10852D8E25483 /* PowerManager.swift in Sources */,
+				2D19A5B937ACAB34E6797A94 /* SettingsView.swift in Sources */,
+				82DB4A843732E3C265AF0E7C /* URLManagerView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		17928755C10DEBAC345E0FA9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = DashboardTV;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2026 Jordan Koch. All rights reserved.";
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.jordankoch.DashboardTV;
+				SDKROOT = appletvos;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 17.0;
+			};
+			name = Debug;
+		};
+		3C109A6EB171C08DEEC8F3C2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.9;
+				TVOS_DEPLOYMENT_TARGET = 17.0;
+			};
+			name = Release;
+		};
+		3CC5787611F1BD35D9343E8A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = DashboardTV;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2026 Jordan Koch. All rights reserved.";
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.jordankoch.DashboardTV;
+				SDKROOT = appletvos;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 17.0;
+			};
+			name = Release;
+		};
+		AAFCED412FB5DCC44ACE6126 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.9;
+				TVOS_DEPLOYMENT_TARGET = 17.0;
+			};
+			name = Debug;
+		};
+		DF3477F19C38ECFEB841751E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = DashboardScreensaver/DashboardScreensaver.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Dashboard Screensaver";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2026 Jordan Koch. All rights reserved.";
+				INFOPLIST_KEY_NSMainStoryboardFile = "";
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jordankoch.DashboardScreensaver;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		F2C63D94815C510B742902B8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = DashboardScreensaver/DashboardScreensaver.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Dashboard Screensaver";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2026 Jordan Koch. All rights reserved.";
+				INFOPLIST_KEY_NSMainStoryboardFile = "";
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jordankoch.DashboardScreensaver;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0C188ECBDAA69420C64074FF /* Build configuration list for PBXProject "DashboardScreensaver" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AAFCED412FB5DCC44ACE6126 /* Debug */,
+				3C109A6EB171C08DEEC8F3C2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		4AA907C7BAB535F4F197ECE3 /* Build configuration list for PBXNativeTarget "DashboardTV" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				17928755C10DEBAC345E0FA9 /* Debug */,
+				3CC5787611F1BD35D9343E8A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		E2133CD26B9C8D047A220E7F /* Build configuration list for PBXNativeTarget "DashboardScreensaver" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DF3477F19C38ECFEB841751E /* Debug */,
+				F2C63D94815C510B742902B8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 576AAA6CCABDA438C9D42C17 /* Project object */;
+}
