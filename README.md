@@ -321,3 +321,7 @@ See LICENSE file for details.
 *Dashboard Screensaver - Intelligent dashboard rotation for monitoring and display*
 
 **Last Updated:** January 28, 2026
+
+---
+
+> **Disclaimer:** This is a personal project created on my own time. It is not affiliated with, endorsed by, or representative of my employer.
