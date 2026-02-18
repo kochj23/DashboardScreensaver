@@ -1,5 +1,7 @@
 # Dashboard Screensaver
 
+![Build](https://github.com/kochj23/DashboardScreensaver/actions/workflows/build.yml/badge.svg)
+
 A comprehensive macOS application for rotating through multiple web dashboards with intelligent alert detection, health monitoring, and remote Apple TV configuration. Perfect for NOC displays, monitoring stations, kiosks, and smart home dashboards.
 
 ![Version](https://img.shields.io/badge/version-1.0-blue.svg)
