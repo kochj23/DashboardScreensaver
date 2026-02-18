@@ -8,10 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		105ABBC4DF38F3CE9062A54E /* DashboardTVApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48DB3237B08C5E3776913660 /* DashboardTVApp.swift */; };
+		158E7B25CC238810CAF2889B /* AIBackendManager+Generation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C4CA754FE066481BF35D4A /* AIBackendManager+Generation.swift */; };
 		1D24E0B71DBE50A0AA78D79E /* TVContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B4D2D9B2608545132AC05F /* TVContentView.swift */; };
 		2D19A5B937ACAB34E6797A94 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8CBFC0899441D77CA138C0B /* SettingsView.swift */; };
 		32DBF249E4464B63F0B0838E /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B045E63F487648F70EC547B /* Models.swift */; };
 		477120A93DC7E57FA4EC1C36 /* DashboardWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED398E04B033361025CF9964 /* DashboardWebView.swift */; };
+		487EF5B751CA3B93CB5E35BC /* AIBackendManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9E85ED546AAE3F58FDF139 /* AIBackendManager.swift */; };
 		5D7D9CBAD5B4E485FCC14B56 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D49D31635CDABC0CA5DC9A28 /* Assets.xcassets */; };
 		5F87F73476D5B53868842EB9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F41AD9D81A1375D34D74C35 /* ContentView.swift */; };
 		7C88D468E1DE8A1CD7C8DB10 /* ModernDesign.swift in Sources */ = {isa = PBXBuildFile; fileRef = F480C68AC7FA13A45BFA4175 /* ModernDesign.swift */; };
@@ -21,26 +23,32 @@
 		82DB4A843732E3C265AF0E7C /* URLManagerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C4E891DA864F48C0B8C5001 /* URLManagerView.swift */; };
 		ACF21098FBFC1B37632250FB /* ModernDesign.swift in Sources */ = {isa = PBXBuildFile; fileRef = F480C68AC7FA13A45BFA4175 /* ModernDesign.swift */; };
 		BBB5CB297951C21CC16DDEE9 /* DashboardScreensaverApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF1E507166B2C93B959BF1C /* DashboardScreensaverApp.swift */; };
+		BF622B231F5E962D0BD7AE9A /* AIBackendManager+Enhanced.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89BF3FEFDB8F145F2F90A918 /* AIBackendManager+Enhanced.swift */; };
 		C06A199939CFE95AD428EAC0 /* HealthMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403F59446C490BA0E3DCF8B9 /* HealthMonitor.swift */; };
 		C63272AC6A256A935E956ECD /* AppleTVDiscovery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859E3F99158981F8890007CD /* AppleTVDiscovery.swift */; };
+		D17506F28CF957807B8C20F8 /* AIBackendStatusMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35832661C3DD3E27C7A2B49C /* AIBackendStatusMenu.swift */; };
 		EC75110E44EDD2D56A8A5BE1 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B045E63F487648F70EC547B /* Models.swift */; };
 		EC97A89C21C10852D8E25483 /* PowerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8BB74A82649C71B20F1D6F /* PowerManager.swift */; };
 		F23426BBBAEB7B22C9C9C99B /* AppleTVManagerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72AEF92D2142022EAFDF3349 /* AppleTVManagerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0F9E85ED546AAE3F58FDF139 /* AIBackendManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AIBackendManager.swift; path = DashboardScreensaver/Managers/AIBackendManager.swift; sourceTree = "<group>"; };
 		1B045E63F487648F70EC547B /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		2F41AD9D81A1375D34D74C35 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		33B4D2D9B2608545132AC05F /* TVContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVContentView.swift; sourceTree = "<group>"; };
+		35832661C3DD3E27C7A2B49C /* AIBackendStatusMenu.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AIBackendStatusMenu.swift; path = DashboardScreensaver/Managers/AIBackendStatusMenu.swift; sourceTree = "<group>"; };
 		3E8BB74A82649C71B20F1D6F /* PowerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerManager.swift; sourceTree = "<group>"; };
 		3EF1E507166B2C93B959BF1C /* DashboardScreensaverApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardScreensaverApp.swift; sourceTree = "<group>"; };
 		403F59446C490BA0E3DCF8B9 /* HealthMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthMonitor.swift; sourceTree = "<group>"; };
 		475D7972370BC30DF56635B3 /* DashboardScreensaver.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DashboardScreensaver.entitlements; sourceTree = "<group>"; };
 		48DB3237B08C5E3776913660 /* DashboardTVApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardTVApp.swift; sourceTree = "<group>"; };
+		49C4CA754FE066481BF35D4A /* AIBackendManager+Generation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "AIBackendManager+Generation.swift"; path = "DashboardScreensaver/Managers/AIBackendManager+Generation.swift"; sourceTree = "<group>"; };
 		72AEF92D2142022EAFDF3349 /* AppleTVManagerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleTVManagerView.swift; sourceTree = "<group>"; };
 		73F10C02BACBE859CCD4DB03 /* DashboardScreensaver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DashboardScreensaver.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B3CDA8E3C22C79D2F262D64 /* DashboardManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardManager.swift; sourceTree = "<group>"; };
 		859E3F99158981F8890007CD /* AppleTVDiscovery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleTVDiscovery.swift; sourceTree = "<group>"; };
+		89BF3FEFDB8F145F2F90A918 /* AIBackendManager+Enhanced.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "AIBackendManager+Enhanced.swift"; path = "DashboardScreensaver/Managers/AIBackendManager+Enhanced.swift"; sourceTree = "<group>"; };
 		8C4E891DA864F48C0B8C5001 /* URLManagerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLManagerView.swift; sourceTree = "<group>"; };
 		9394EFC16B9F0334A9732C7D /* AIAlertDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIAlertDetector.swift; sourceTree = "<group>"; };
 		B0990B8A598E0D5928B9C68F /* DashboardTV.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = DashboardTV.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -66,6 +74,17 @@
 				9394EFC16B9F0334A9732C7D /* AIAlertDetector.swift */,
 			);
 			path = AI;
+			sourceTree = "<group>";
+		};
+		28108886FC3332B6E96DA0F2 /* AIBackend */ = {
+			isa = PBXGroup;
+			children = (
+				0F9E85ED546AAE3F58FDF139 /* AIBackendManager.swift */,
+				49C4CA754FE066481BF35D4A /* AIBackendManager+Generation.swift */,
+				89BF3FEFDB8F145F2F90A918 /* AIBackendManager+Enhanced.swift */,
+				35832661C3DD3E27C7A2B49C /* AIBackendStatusMenu.swift */,
+			);
+			name = AIBackend;
 			sourceTree = "<group>";
 		};
 		2F8C05C23456DCBC6368B19A /* Network */ = {
@@ -131,6 +150,7 @@
 				FA71AD29D8DF1E9C780F56AB /* DashboardTV */,
 				8FE455D96EF786B319524EFF /* Shared */,
 				D5CFB4C6AA1322BF76B15CD4 /* Products */,
+				28108886FC3332B6E96DA0F2 /* AIBackend */,
 			);
 			sourceTree = "<group>";
 		};
@@ -181,8 +201,6 @@
 			dependencies = (
 			);
 			name = DashboardScreensaver;
-			packageProductDependencies = (
-			);
 			productName = DashboardScreensaver;
 			productReference = 73F10C02BACBE859CCD4DB03 /* DashboardScreensaver.app */;
 			productType = "com.apple.product-type.application";
@@ -199,8 +217,6 @@
 			dependencies = (
 			);
 			name = DashboardTV;
-			packageProductDependencies = (
-			);
 			productName = DashboardTV;
 			productReference = B0990B8A598E0D5928B9C68F /* DashboardTV.app */;
 			productType = "com.apple.product-type.application";
@@ -235,6 +251,7 @@
 			mainGroup = C5544341614F3074513E4E61;
 			minimizedProjectReferenceProxies = 1;
 			preferredProjectObjectVersion = 77;
+			productRefGroup = D5CFB4C6AA1322BF76B15CD4 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -292,6 +309,10 @@
 				EC97A89C21C10852D8E25483 /* PowerManager.swift in Sources */,
 				2D19A5B937ACAB34E6797A94 /* SettingsView.swift in Sources */,
 				82DB4A843732E3C265AF0E7C /* URLManagerView.swift in Sources */,
+				487EF5B751CA3B93CB5E35BC /* AIBackendManager.swift in Sources */,
+				158E7B25CC238810CAF2889B /* AIBackendManager+Generation.swift in Sources */,
+				BF622B231F5E962D0BD7AE9A /* AIBackendManager+Enhanced.swift in Sources */,
+				D17506F28CF957807B8C20F8 /* AIBackendStatusMenu.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
