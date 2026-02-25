@@ -266,6 +266,7 @@ DashboardScreensaver/
 - **No Cloud**: No data sent to external services
 - **No Telemetry**: No usage tracking or analytics
 - **Hardened Runtime**: Code-signed for security
+- **Keychain Storage**: API keys stored securely in macOS Keychain (not UserDefaults)
 
 ## Troubleshooting
 
