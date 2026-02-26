@@ -19,3 +19,4 @@ xcuserdata/
 *.xcuserstate
 *.xcscmblueprint
 project.yml
+.build/
