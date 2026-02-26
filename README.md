@@ -2,7 +2,7 @@
 
 ![Build](https://github.com/kochj23/DashboardScreensaver/actions/workflows/build.yml/badge.svg)
 
-A comprehensive macOS application for rotating through multiple web dashboards with intelligent alert detection, health monitoring, and remote Apple TV configuration. Perfect for NOC displays, monitoring stations, kiosks, and smart home dashboards.
+A comprehensive macOS application for rotating through multiple web dashboards with intelligent alert detection, health monitoring, and remote Apple TV configuration. Perfect for NOC (Network Operations Center) displays, monitoring stations, kiosks, and smart home dashboards.
 
 ![Version](https://img.shields.io/badge/version-1.0-blue.svg)
 ![Platform](https://img.shields.io/badge/platform-macOS%2014%2B-lightgrey.svg)
@@ -14,7 +14,7 @@ A comprehensive macOS application for rotating through multiple web dashboards w
 Dashboard Screensaver consolidates multiple dashboard rotation tools into a single, powerful application featuring:
 
 - **Dashboard Rotation** - Automatically cycle through multiple web dashboards
-- **AI Alert Detection** - Vision framework-based color analysis and OCR for detecting alerts
+- **AI Alert Detection** - Vision framework-based color analysis and OCR (Optical Character Recognition) for detecting alerts
 - **Health Monitoring** - Track dashboard availability and skip unreachable URLs
 - **Smooth Scrolling** - Animated page scrolling for long dashboards
 - **Apple TV Support** - Configure remote Apple TVs running DashboardTV
@@ -26,7 +26,7 @@ Dashboard Screensaver consolidates multiple dashboard rotation tools into a sing
 ### Dashboard Management
 - Add unlimited dashboard URLs
 - Organize dashboards into color-coded groups
-- Import URLs from CSV files or remote configurations
+- Import URLs from CSV (Comma-Separated Values) files or remote configurations
 - Enable/disable individual dashboards
 - Automatic health status tracking
 
@@ -68,14 +68,14 @@ Dashboard Screensaver consolidates multiple dashboard rotation tools into a sing
 - Default profiles: Business Hours, After Hours, Weekend
 
 ### Apple TV Remote Configuration
-- Bonjour/mDNS discovery of Apple TVs running DashboardTV
+- Bonjour/mDNS (Multicast Domain Name System) discovery of Apple TVs running DashboardTV
 - IP range scanning fallback
 - Remote configuration without typing URLs
 - Assign dashboard groups to Apple TVs
 - View configuration status
 
 ### Display Options
-- Dark mode CSS injection for dashboards
+- Dark mode CSS (Cascading Style Sheets) injection for dashboards
 - Screen sleep prevention (IOKit)
 - Full-screen kiosk mode
 - Alert overlay display
@@ -134,7 +134,7 @@ Dashboard Screensaver consolidates multiple dashboard rotation tools into a sing
 ## Installation
 
 ### From DMG
-1. Download the latest DMG from Releases
+1. Download the latest DMG (Disk Image) from Releases
 2. Open the DMG file
 3. Drag "Dashboard Screensaver" to Applications
 4. Launch from Applications folder
