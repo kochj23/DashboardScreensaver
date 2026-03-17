@@ -12,6 +12,10 @@ import SwiftUI
 struct DashboardScreensaverApp: App {
     @StateObject private var appState = AppState()
 
+    init() {
+        NovaAPIServer.shared.start()
+    }
+
     var body: some Scene {
         WindowGroup {
             ContentView()
