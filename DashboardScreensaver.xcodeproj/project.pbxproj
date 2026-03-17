@@ -14,6 +14,7 @@
 		32DBF249E4464B63F0B0838E /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B045E63F487648F70EC547B /* Models.swift */; };
 		477120A93DC7E57FA4EC1C36 /* DashboardWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED398E04B033361025CF9964 /* DashboardWebView.swift */; };
 		487EF5B751CA3B93CB5E35BC /* AIBackendManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9E85ED546AAE3F58FDF139 /* AIBackendManager.swift */; };
+		5366B533D033881370DE692D /* NovaAPIServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603EEF9BC8549D180F6A27A5 /* NovaAPIServer.swift */; };
 		5D7D9CBAD5B4E485FCC14B56 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D49D31635CDABC0CA5DC9A28 /* Assets.xcassets */; };
 		5F87F73476D5B53868842EB9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F41AD9D81A1375D34D74C35 /* ContentView.swift */; };
 		7C88D468E1DE8A1CD7C8DB10 /* ModernDesign.swift in Sources */ = {isa = PBXBuildFile; fileRef = F480C68AC7FA13A45BFA4175 /* ModernDesign.swift */; };
@@ -44,6 +45,7 @@
 		475D7972370BC30DF56635B3 /* DashboardScreensaver.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DashboardScreensaver.entitlements; sourceTree = "<group>"; };
 		48DB3237B08C5E3776913660 /* DashboardTVApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardTVApp.swift; sourceTree = "<group>"; };
 		49C4CA754FE066481BF35D4A /* AIBackendManager+Generation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "AIBackendManager+Generation.swift"; path = "DashboardScreensaver/Managers/AIBackendManager+Generation.swift"; sourceTree = "<group>"; };
+		603EEF9BC8549D180F6A27A5 /* NovaAPIServer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NovaAPIServer.swift; sourceTree = "<absolute>"; };
 		72AEF92D2142022EAFDF3349 /* AppleTVManagerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleTVManagerView.swift; sourceTree = "<group>"; };
 		73F10C02BACBE859CCD4DB03 /* DashboardScreensaver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DashboardScreensaver.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B3CDA8E3C22C79D2F262D64 /* DashboardManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardManager.swift; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 				D49D31635CDABC0CA5DC9A28 /* Assets.xcassets */,
 				475D7972370BC30DF56635B3 /* DashboardScreensaver.entitlements */,
 				3EF1E507166B2C93B959BF1C /* DashboardScreensaverApp.swift */,
+				603EEF9BC8549D180F6A27A5 /* NovaAPIServer.swift */,
 			);
 			path = DashboardScreensaver;
 			sourceTree = "<group>";
@@ -313,6 +316,7 @@
 				158E7B25CC238810CAF2889B /* AIBackendManager+Generation.swift in Sources */,
 				BF622B231F5E962D0BD7AE9A /* AIBackendManager+Enhanced.swift in Sources */,
 				D17506F28CF957807B8C20F8 /* AIBackendStatusMenu.swift in Sources */,
+				5366B533D033881370DE692D /* NovaAPIServer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
