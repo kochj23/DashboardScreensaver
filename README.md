@@ -4,10 +4,20 @@
 
 A comprehensive macOS application for rotating through multiple web dashboards with intelligent alert detection, health monitoring, and remote Apple TV configuration. Perfect for NOC (Network Operations Center) displays, monitoring stations, kiosks, and smart home dashboards.
 
-![Version](https://img.shields.io/badge/version-1.0-blue.svg)
+![Version](https://img.shields.io/badge/version-1.1.0-blue.svg)
 ![Platform](https://img.shields.io/badge/platform-macOS%2014%2B-lightgrey.svg)
 ![Swift](https://img.shields.io/badge/swift-5.9-orange.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
+
+## What's New in v1.1.0 (March 2026)
+
+### macOS Widget Support
+- **Small widget**: Health ring showing healthy/total dashboards, rotation status pulse, alert badge
+- **Medium widget**: Current dashboard name, health breakdown (healthy/degraded/failed), next rotation countdown, pause/resume deep links
+- **Large widget**: Full dashboard grid with per-dashboard health dots, rotation controls, alert count, schedule name
+- Widget refreshes every 60s while rotating, every 5 minutes when paused
+
+---
 
 ## Purpose
 
