@@ -1,10 +1,11 @@
 # Dashboard Screensaver
 
-![Build](https://github.com/kochj23/DashboardScreensaver/actions/workflows/build.yml/badge.svg)
-![Version](https://img.shields.io/badge/version-1.1.0-blue.svg)
+[![Build](https://github.com/kochj23/DashboardScreensaver/actions/workflows/build.yml/badge.svg)](https://github.com/kochj23/DashboardScreensaver/actions)
+[![Version](https://img.shields.io/badge/version-1.1.0-blue.svg)](https://github.com/kochj23/DashboardScreensaver/releases)
 ![Platform](https://img.shields.io/badge/platform-macOS%2014%2B%20%7C%20tvOS%2017%2B-lightgrey.svg)
 ![Swift](https://img.shields.io/badge/swift-5.9-orange.svg)
-![License](https://img.shields.io/badge/license-MIT-green.svg)
+[![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+![Tests](https://img.shields.io/badge/tests-85%20passed-brightgreen.svg)
 
 A macOS application for rotating through multiple web dashboards with AI-powered alert detection, health monitoring, smooth scrolling, schedule-based groups, macOS widgets, Apple TV remote configuration, and a glassmorphic UI. Built for NOC displays, monitoring stations, kiosk environments, and smart home dashboards.
 
@@ -36,56 +37,42 @@ A macOS application for rotating through multiple web dashboards with AI-powered
 
 ## Architecture
 
-```
-+-----------------------------------------------------------------------+
-|                        Dashboard Screensaver                          |
-|                        macOS 14+ / SwiftUI                            |
-+-----------------------------------------------------------------------+
-|                                                                       |
-|  +------------------+    +------------------+    +-----------------+  |
-|  | ContentView      |    | DashboardWebView |    | SettingsView    |  |
-|  | (main interface) |--->| (WKWebView +     |    | URLManagerView  |  |
-|  |                  |    |  smooth scroll)   |    | AppleTVManager  |  |
-|  +--------+---------+    +--------+---------+    +--------+--------+  |
-|           |                       |                       |           |
-|  +--------v---------+    +--------v---------+    +--------v--------+  |
-|  | DashboardManager |    | AIAlertDetector  |    | AIBackend       |  |
-|  | - URL storage    |    | - Vision OCR     |    |   Manager       |  |
-|  | - group mgmt     |    | - color analysis |    | - Ollama/MLX    |  |
-|  | - rotation state |    | - change detect  |    | - TinyLLM/Chat  |  |
-|  | - schedule eval  |    | - notifications  |    | - cloud APIs    |  |
-|  +--------+---------+    +------------------+    +-----------------+  |
-|           |                                                           |
-|  +--------v---------+    +------------------+    +-----------------+  |
-|  | HealthMonitor    |    | PowerManager     |    | AppleTVDiscovery|  |
-|  | - HEAD requests  |    | - IOKit sleep    |    | - Bonjour/mDNS  |  |
-|  | - success rates  |    |   prevention     |    | - IP range scan |  |
-|  | - failure counts |    | - assertion mgmt |    | - remote config |  |
-|  +------------------+    +------------------+    +--------+--------+  |
-|                                                           |           |
-|  +------------------+    +------------------+             |           |
-|  | WidgetDataSync   |    | NovaAPIServer    |             |           |
-|  | - App Group      |    | - port 37428     |             |           |
-|  | - WidgetKit      |    | - /api/status    |             |           |
-|  | - shared state   |    | - /api/ping      |             |           |
-|  +--------+---------+    +------------------+             |           |
-|           |                                               |           |
-+-----------------------------------------------------------------------+
-            |                                               |
-  +---------v-----------+                     +-------------v---------+
-  | Widget Extension    |                     | DashboardTV (tvOS)    |
-  | - small / med / lrg |                     | - ConfigurationServer |
-  | - health ring       |                     | - Bonjour advertise   |
-  | - dashboard grid    |                     | - remote URL config   |
-  | - rotation status   |                     | - WKWebView rotation  |
-  +---------+-----------+                     +-----------------------+
-            |
-  +---------v-----------+
-  | Shared/             |
-  | - Models.swift      |
-  | - ModernDesign.swift|
-  | - WidgetData.swift  |
-  +-----------------------+
+```mermaid
+graph TB
+    subgraph macOS["Dashboard Screensaver (macOS 14+)"]
+        direction TB
+        CV[ContentView] --> DWV[DashboardWebView<br/>WKWebView + smooth scroll]
+        CV --> SV[SettingsView / URLManager / AppleTVManager]
+
+        CV --> DM[DashboardManager<br/>URLs, groups, schedules, rotation]
+        DWV --> AAD[AIAlertDetector<br/>Vision OCR + color analysis]
+        SV --> ABM[AIBackendManager<br/>Ollama, MLX, TinyLLM, cloud APIs]
+
+        DM --> HM[HealthMonitor<br/>HEAD checks, failure tracking]
+        DM --> PM[PowerManager<br/>IOKit sleep prevention]
+        DM --> ATD[AppleTVDiscovery<br/>Bonjour + IP scan]
+
+        DM --> WDS[WidgetDataSync<br/>App Group + WidgetKit]
+        DM --> NAS[NovaAPIServer<br/>port 37428, loopback]
+    end
+
+    subgraph Widget["Widget Extension"]
+        WDS --> WE[Small / Medium / Large<br/>Health ring, dashboard grid]
+    end
+
+    subgraph Shared["Shared/"]
+        Models[Models.swift]
+        MD[ModernDesign.swift]
+        WD[WidgetData.swift]
+    end
+
+    subgraph tvOS["DashboardTV (tvOS 17+)"]
+        ATD -.->|Bonjour + HTTP| DTV[ConfigurationServer<br/>WKWebView rotation]
+    end
+
+    DM --> Models
+    WDS --> WD
+    CV --> MD
 ```
 
 ### Technology Stack
@@ -494,6 +481,40 @@ DashboardScreensaver/
 - Confirm the app is running -- widget data is written on each rotation event.
 - Check that the App Group entitlement (`group.com.jordankoch.DashboardScreensaver`) is correctly configured in both targets.
 - Widget refresh is limited by the system; updates occur every 60 seconds during rotation and every 5 minutes when paused.
+
+---
+
+## Testing
+
+The project includes a comprehensive XCTest suite with 85 tests covering data models, schedule logic, widget data, and security.
+
+### Test Suites
+
+| Suite | Tests | Coverage |
+|-------|-------|----------|
+| DashboardURLTests | 10 | URL init, name extraction, codable, hashable |
+| URLHealthStatusTests | 4 | Display names, icons, raw values, codable |
+| DashboardGroupTests | 3 | Init, defaults, codable |
+| ScheduleProfileTests | 9 | Time ranges, day descriptions, isActive (business hours, overnight, disabled days), codable |
+| DayOfWeekTests | 5 | Calendar weekday mapping, short/full names, comparable |
+| AlertSeverityTests | 4 | Display names, extra display time, comparable, codable |
+| DashboardAnalysisResultTests | 4 | hasAlerts, summaryText (none, critical+keywords) |
+| AppleTVDeviceTests | 4 | Init, baseURL, custom port, codable |
+| DashboardSettingsTests | 2 | Default values, codable |
+| ColorExtensionTests | 5 | Valid hex, no-hash, invalid, empty, whitespace |
+| DashboardWidgetDataTests | 5 | Health percent, overall health states, placeholder/empty, codable |
+| DashboardHealthTests | 4 | Labels, color hex, icon names, codable |
+| WidgetDashboardTests | 2 | Init, codable |
+| WidgetURLHealthTests | 2 | Color hex values, dot character |
+| SecurityTests | 7 | No hardcoded credentials, no plaintext passwords, Keychain usage, loopback API binding, safe URL construction, HTTP response security headers |
+
+### Running Tests
+
+```bash
+xcodebuild test -project DashboardScreensaver.xcodeproj \
+  -scheme DashboardScreensaverTests \
+  -destination 'platform=macOS'
+```
 
 ---
 

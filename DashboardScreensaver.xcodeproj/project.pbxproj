@@ -12,6 +12,7 @@
 		19CDBD02A97353C61C4CE90E /* SharedDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2584557F10FA795CB05BF5D9 /* SharedDataManager.swift */; };
 		1A8A5D1B714D6161F8710338 /* AIBackendManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A78EE32D27F6FBC41C1CB0 /* AIBackendManager.swift */; };
 		1D24E0B71DBE50A0AA78D79E /* TVContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B4D2D9B2608545132AC05F /* TVContentView.swift */; };
+		24B43E1D807F1690E46C7994 /* ModelsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977EEA32BBF08A00F395C847 /* ModelsTests.swift */; };
 		2D19A5B937ACAB34E6797A94 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8CBFC0899441D77CA138C0B /* SettingsView.swift */; };
 		32B8342E6894EC499F41FC20 /* NovaAPIServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023DC90EF487FADBD6269211 /* NovaAPIServer.swift */; };
 		32DBF249E4464B63F0B0838E /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B045E63F487648F70EC547B /* Models.swift */; };
@@ -19,6 +20,7 @@
 		477120A93DC7E57FA4EC1C36 /* DashboardWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED398E04B033361025CF9964 /* DashboardWebView.swift */; };
 		4A6AAAFF7E61ACDE5BAC8730 /* WidgetDataSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C333A5D092D48E983D7F259 /* WidgetDataSync.swift */; };
 		4EE79E10279276CCAE7C748F /* DashboardScreensaverWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA9A614A2929713AEBBAD03 /* DashboardScreensaverWidget.swift */; };
+		5B0FF21CF3F902145965B8C4 /* SecurityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609BA37B2C80D3B2E1F7E709 /* SecurityTests.swift */; };
 		5D7D9CBAD5B4E485FCC14B56 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D49D31635CDABC0CA5DC9A28 /* Assets.xcassets */; };
 		5F87F73476D5B53868842EB9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F41AD9D81A1375D34D74C35 /* ContentView.swift */; };
 		73711C7A781C5FB24CE2E01F /* AIBackendManager+Generation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA31C531C85ED60B3A63EDC /* AIBackendManager+Generation.swift */; };
@@ -27,6 +29,7 @@
 		7F48999C87769CB494BC605D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C6FF8A50637D1846D995C6C5 /* Assets.xcassets */; };
 		7FC4EF532C0B0BDABE3B0CEF /* AIAlertDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9394EFC16B9F0334A9732C7D /* AIAlertDetector.swift */; };
 		82DB4A843732E3C265AF0E7C /* URLManagerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C4E891DA864F48C0B8C5001 /* URLManagerView.swift */; };
+		925EFE43B7A04029754B02CE /* WidgetDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7746425C2BAF4AB9649D5A9A /* WidgetDataTests.swift */; };
 		9B42B0F816141393D0037A45 /* WidgetData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94582F56762AB40E1796152 /* WidgetData.swift */; };
 		A54E99CE7ED33A4FC95D1154 /* AIBackendManager+Enhanced.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E41225039F5BF3CF3EB3D2 /* AIBackendManager+Enhanced.swift */; };
 		ACF21098FBFC1B37632250FB /* ModernDesign.swift in Sources */ = {isa = PBXBuildFile; fileRef = F480C68AC7FA13A45BFA4175 /* ModernDesign.swift */; };
@@ -48,6 +51,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 218894A08AE8E5D72C124A82;
 			remoteInfo = "DashboardScreensaver Widget";
+		};
+		625E535B4E0FA3CDF9B60406 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 576AAA6CCABDA438C9D42C17 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2D53F548E8DF84E2B7F3BD3D;
+			remoteInfo = DashboardScreensaver;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -80,14 +90,18 @@
 		48A78EE32D27F6FBC41C1CB0 /* AIBackendManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIBackendManager.swift; sourceTree = "<group>"; };
 		48DB3237B08C5E3776913660 /* DashboardTVApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardTVApp.swift; sourceTree = "<group>"; };
 		4AF159A42D7421DE96882BAF /* AIBackendStatusMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIBackendStatusMenu.swift; sourceTree = "<group>"; };
+		609BA37B2C80D3B2E1F7E709 /* SecurityTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SecurityTests.swift; sourceTree = "<group>"; };
 		72AEF92D2142022EAFDF3349 /* AppleTVManagerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleTVManagerView.swift; sourceTree = "<group>"; };
 		73F10C02BACBE859CCD4DB03 /* DashboardScreensaver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DashboardScreensaver.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		75CEF54059AD3D2104FB67E5 /* DashboardScreensaverTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 1; path = DashboardScreensaverTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7746425C2BAF4AB9649D5A9A /* WidgetDataTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WidgetDataTests.swift; sourceTree = "<group>"; };
 		7B3CDA8E3C22C79D2F262D64 /* DashboardManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardManager.swift; sourceTree = "<group>"; };
 		859E3F99158981F8890007CD /* AppleTVDiscovery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleTVDiscovery.swift; sourceTree = "<group>"; };
 		87F0F0FFCBDA0AEAF51C2BE4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8C4E891DA864F48C0B8C5001 /* URLManagerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLManagerView.swift; sourceTree = "<group>"; };
 		8CA31C531C85ED60B3A63EDC /* AIBackendManager+Generation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AIBackendManager+Generation.swift"; sourceTree = "<group>"; };
 		9394EFC16B9F0334A9732C7D /* AIAlertDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIAlertDetector.swift; sourceTree = "<group>"; };
+		977EEA32BBF08A00F395C847 /* ModelsTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ModelsTests.swift; sourceTree = "<group>"; };
 		B0990B8A598E0D5928B9C68F /* DashboardTV.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = DashboardTV.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDF704E445C59D6A2154A17C /* DashboardScreensaver Widget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "DashboardScreensaver Widget.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6FF8A50637D1846D995C6C5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -99,6 +113,16 @@
 		F480C68AC7FA13A45BFA4175 /* ModernDesign.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModernDesign.swift; sourceTree = "<group>"; };
 		F8CBFC0899441D77CA138C0B /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		BC1CB01F113EE586FAAB6386 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		0B5531AC76FE68199FF68FB1 /* Views */ = {
@@ -115,6 +139,17 @@
 				9394EFC16B9F0334A9732C7D /* AIAlertDetector.swift */,
 			);
 			path = AI;
+			sourceTree = "<group>";
+		};
+		241B8BD1D08D5E5B460AABEE /* DashboardScreensaverTests */ = {
+			isa = PBXGroup;
+			children = (
+				609BA37B2C80D3B2E1F7E709 /* SecurityTests.swift */,
+				977EEA32BBF08A00F395C847 /* ModelsTests.swift */,
+				7746425C2BAF4AB9649D5A9A /* WidgetDataTests.swift */,
+			);
+			name = DashboardScreensaverTests;
+			path = DashboardScreensaverTests;
 			sourceTree = "<group>";
 		};
 		2F8C05C23456DCBC6368B19A /* Network */ = {
@@ -199,6 +234,7 @@
 				FA71AD29D8DF1E9C780F56AB /* DashboardTV */,
 				8FE455D96EF786B319524EFF /* Shared */,
 				D5CFB4C6AA1322BF76B15CD4 /* Products */,
+				241B8BD1D08D5E5B460AABEE /* DashboardScreensaverTests */,
 			);
 			sourceTree = "<group>";
 		};
@@ -208,6 +244,7 @@
 				BDF704E445C59D6A2154A17C /* DashboardScreensaver Widget.appex */,
 				73F10C02BACBE859CCD4DB03 /* DashboardScreensaver.app */,
 				B0990B8A598E0D5928B9C68F /* DashboardTV.app */,
+				75CEF54059AD3D2104FB67E5 /* DashboardScreensaverTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -238,6 +275,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		0B294820D90313F912906593 /* DashboardScreensaverTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5178CC67D56A4A8EDD516FBD /* Build configuration list for PBXNativeTarget "DashboardScreensaverTests" */;
+			buildPhases = (
+				F2AEC52001176AE8AB017114 /* Sources */,
+				BC1CB01F113EE586FAAB6386 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				38B5A5D4DEAC63640F38B50C /* PBXTargetDependency */,
+			);
+			name = DashboardScreensaverTests;
+			productName = DashboardScreensaverTests;
+			productReference = 75CEF54059AD3D2104FB67E5 /* DashboardScreensaverTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		218894A08AE8E5D72C124A82 /* DashboardScreensaver Widget */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = A3B707B5C1A53EA80EB3D933 /* Build configuration list for PBXNativeTarget "DashboardScreensaver Widget" */;
@@ -250,8 +304,6 @@
 			dependencies = (
 			);
 			name = "DashboardScreensaver Widget";
-			packageProductDependencies = (
-			);
 			productName = "DashboardScreensaver Widget";
 			productReference = BDF704E445C59D6A2154A17C /* DashboardScreensaver Widget.appex */;
 			productType = "com.apple.product-type.app-extension";
@@ -270,8 +322,6 @@
 				B962A0B365525547EFD9CA2C /* PBXTargetDependency */,
 			);
 			name = DashboardScreensaver;
-			packageProductDependencies = (
-			);
 			productName = DashboardScreensaver;
 			productReference = 73F10C02BACBE859CCD4DB03 /* DashboardScreensaver.app */;
 			productType = "com.apple.product-type.application";
@@ -288,8 +338,6 @@
 			dependencies = (
 			);
 			name = DashboardTV;
-			packageProductDependencies = (
-			);
 			productName = DashboardTV;
 			productReference = B0990B8A598E0D5928B9C68F /* DashboardTV.app */;
 			productType = "com.apple.product-type.application";
@@ -328,12 +376,14 @@
 			mainGroup = C5544341614F3074513E4E61;
 			minimizedProjectReferenceProxies = 1;
 			preferredProjectObjectVersion = 77;
+			productRefGroup = D5CFB4C6AA1322BF76B15CD4 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				2D53F548E8DF84E2B7F3BD3D /* DashboardScreensaver */,
 				218894A08AE8E5D72C124A82 /* DashboardScreensaver Widget */,
 				E3B514B7DECB54E209F8A502 /* DashboardTV */,
+				0B294820D90313F912906593 /* DashboardScreensaverTests */,
 			);
 		};
 /* End PBXProject section */
@@ -415,9 +465,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F2AEC52001176AE8AB017114 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5B0FF21CF3F902145965B8C4 /* SecurityTests.swift in Sources */,
+				24B43E1D807F1690E46C7994 /* ModelsTests.swift in Sources */,
+				925EFE43B7A04029754B02CE /* WidgetDataTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		38B5A5D4DEAC63640F38B50C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2D53F548E8DF84E2B7F3BD3D /* DashboardScreensaver */;
+			targetProxy = 625E535B4E0FA3CDF9B60406 /* PBXContainerItemProxy */;
+		};
 		B962A0B365525547EFD9CA2C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 218894A08AE8E5D72C124A82 /* DashboardScreensaver Widget */;
@@ -558,6 +623,44 @@
 				TVOS_DEPLOYMENT_TARGET = 17.0;
 			};
 			name = Release;
+		};
+		7D4717D5450407E5167683AD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jordankoch.DashboardScreensaverTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SUPPORTED_PLATFORMS = macosx;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.9;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DashboardScreensaver.app/Contents/MacOS/DashboardScreensaver";
+			};
+			name = Release;
+		};
+		97E64CC33ACD387EB7293E00 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jordankoch.DashboardScreensaverTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SUPPORTED_PLATFORMS = macosx;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.9;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DashboardScreensaver.app/Contents/MacOS/DashboardScreensaver";
+			};
+			name = Debug;
 		};
 		AAFCED412FB5DCC44ACE6126 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -719,6 +822,15 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
+		};
+		5178CC67D56A4A8EDD516FBD /* Build configuration list for PBXNativeTarget "DashboardScreensaverTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				97E64CC33ACD387EB7293E00 /* Debug */,
+				7D4717D5450407E5167683AD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A3B707B5C1A53EA80EB3D933 /* Build configuration list for PBXNativeTarget "DashboardScreensaver Widget" */ = {
 			isa = XCConfigurationList;
