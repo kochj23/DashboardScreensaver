@@ -198,8 +198,11 @@ final class SecurityTests: XCTestCase {
             return
         }
 
-        // Verify CORS header is set (Access-Control-Allow-Origin)
-        XCTAssertTrue(content.contains("Access-Control-Allow-Origin"), "NovaAPIServer should set CORS headers")
+        // Verify the wildcard CORS header is NOT present. This is a loopback-only
+        // server whose clients are native Nova apps (which ignore CORS); emitting
+        // Access-Control-Allow-Origin: * would let arbitrary websites read its
+        // responses, so its absence is the intended, secure behavior.
+        XCTAssertFalse(content.contains("Access-Control-Allow-Origin"), "NovaAPIServer must not emit a wildcard CORS header")
 
         // Verify Connection: close header is set (prevents connection hijacking)
         XCTAssertTrue(content.contains("Connection: close"), "NovaAPIServer should close connections after response")
