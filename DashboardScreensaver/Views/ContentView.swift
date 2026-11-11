@@ -7,12 +7,14 @@
 //
 
 import SwiftUI
+import NovaAIKit
 
 struct ContentView: View {
     @StateObject private var dashboardManager = DashboardManager.shared
     @StateObject private var healthMonitor = HealthMonitor.shared
     @StateObject private var aiDetector = AIAlertDetector.shared
     @StateObject private var appleTVDiscovery = AppleTVDiscovery.shared
+    @ObservedObject private var ai = AppAI.shared
 
     @State private var isLoading = false
     @State private var scrollProgress: CGFloat = 0
@@ -228,6 +230,12 @@ struct ContentView: View {
             }
             .buttonStyle(ModernButtonStyle(style: .glass))
 
+            if dashboardManager.settings.enableAIDetection {
+                NovaAIStatusIndicator(ai: ai)
+                    .font(.system(size: 11, design: .rounded))
+                    .help("AI briefing backend. Click to re-check.")
+            }
+
             Button(action: { showSettings = true }) {
                 Image(systemName: "gear")
             }
@@ -245,22 +253,27 @@ struct ContentView: View {
             HStack {
                 Spacer()
 
-                HStack(spacing: 12) {
-                    AlertBadge(severity: result.severity, count: result.detectedKeywords.count)
+                VStack(alignment: .leading, spacing: 8) {
+                    HStack(spacing: 12) {
+                        AlertBadge(severity: result.severity, count: result.detectedKeywords.count)
 
-                    if !result.detectedKeywords.isEmpty {
-                        Text(result.detectedKeywords.joined(separator: ", "))
-                            .font(.system(size: 12, design: .rounded))
-                            .foregroundColor(ModernColors.textSecondary)
-                            .lineLimit(1)
+                        if !result.detectedKeywords.isEmpty {
+                            Text(result.detectedKeywords.joined(separator: ", "))
+                                .font(.system(size: 12, design: .rounded))
+                                .foregroundColor(ModernColors.textSecondary)
+                                .lineLimit(1)
+                        }
+
+                        Button(action: { showAlertOverlay = false }) {
+                            Image(systemName: "xmark.circle.fill")
+                        }
+                        .buttonStyle(.plain)
+                        .foregroundColor(ModernColors.textSecondary)
                     }
 
-                    Button(action: { showAlertOverlay = false }) {
-                        Image(systemName: "xmark.circle.fill")
-                    }
-                    .buttonStyle(.plain)
-                    .foregroundColor(ModernColors.textSecondary)
+                    briefingView
                 }
+                .frame(maxWidth: 420, alignment: .leading)
                 .padding(.horizontal, 16)
                 .padding(.vertical, 10)
                 .background(ModernColors.alertColor(result.severity).opacity(0.2))
@@ -274,6 +287,32 @@ struct ContentView: View {
             .padding()
 
             Spacer()
+        }
+    }
+
+    /// AI briefing (or the built-in one) with where it came from and the AI status dot.
+    @ViewBuilder
+    private var briefingView: some View {
+        if aiDetector.isBriefing {
+            HStack(spacing: 6) {
+                ProgressView().controlSize(.small)
+                Text("Writing briefing…")
+                    .font(.system(size: 12, design: .rounded))
+                    .foregroundColor(ModernColors.textSecondary)
+            }
+        } else if let briefing = aiDetector.lastBriefing {
+            VStack(alignment: .leading, spacing: 4) {
+                Text(briefing.value)
+                    .font(.system(size: 13, design: .rounded))
+                    .foregroundColor(ModernColors.textPrimary)
+                    .fixedSize(horizontal: false, vertical: true)
+                HStack(spacing: 6) {
+                    NovaAIStatusIndicator(ai: ai, showsLabel: false, checksOnAppear: false)
+                    Text(briefing.source.label)
+                        .font(.system(size: 11, design: .rounded))
+                        .foregroundColor(ModernColors.textTertiary)
+                }
+            }
         }
     }
 

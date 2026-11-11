@@ -182,7 +182,7 @@ struct TVContentView: View {
     // MARK: - Methods
 
     private func loadCurrentDashboard() {
-        guard let url = dashboardManager.currentURL else { return }
+        guard dashboardManager.currentURL != nil else { return }
 
         isLoading = true
 

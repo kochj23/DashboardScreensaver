@@ -9,21 +9,20 @@
 /* Begin PBXBuildFile section */
 		105ABBC4DF38F3CE9062A54E /* DashboardTVApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48DB3237B08C5E3776913660 /* DashboardTVApp.swift */; };
 		1160E514D00A192542BD233B /* WidgetData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94582F56762AB40E1796152 /* WidgetData.swift */; };
+		170E9481CE62EACD6F1ACFEB /* AlertBriefing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75EE9B6FE133E902A9C1FFE5 /* AlertBriefing.swift */; };
 		19CDBD02A97353C61C4CE90E /* SharedDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2584557F10FA795CB05BF5D9 /* SharedDataManager.swift */; };
-		1A8A5D1B714D6161F8710338 /* AIBackendManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A78EE32D27F6FBC41C1CB0 /* AIBackendManager.swift */; };
 		1D24E0B71DBE50A0AA78D79E /* TVContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B4D2D9B2608545132AC05F /* TVContentView.swift */; };
 		24B43E1D807F1690E46C7994 /* ModelsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977EEA32BBF08A00F395C847 /* ModelsTests.swift */; };
 		2D19A5B937ACAB34E6797A94 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8CBFC0899441D77CA138C0B /* SettingsView.swift */; };
 		32B8342E6894EC499F41FC20 /* NovaAPIServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023DC90EF487FADBD6269211 /* NovaAPIServer.swift */; };
 		32DBF249E4464B63F0B0838E /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B045E63F487648F70EC547B /* Models.swift */; };
-		3B02DEA045170B0C95CCA54C /* AIBackendStatusMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF159A42D7421DE96882BAF /* AIBackendStatusMenu.swift */; };
 		477120A93DC7E57FA4EC1C36 /* DashboardWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED398E04B033361025CF9964 /* DashboardWebView.swift */; };
 		4A6AAAFF7E61ACDE5BAC8730 /* WidgetDataSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C333A5D092D48E983D7F259 /* WidgetDataSync.swift */; };
 		4EE79E10279276CCAE7C748F /* DashboardScreensaverWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA9A614A2929713AEBBAD03 /* DashboardScreensaverWidget.swift */; };
+		5A83B45C89961CE17F47C684 /* AIKitAdoptionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41CC0FA79826C67EC08D9E6 /* AIKitAdoptionTests.swift */; };
 		5B0FF21CF3F902145965B8C4 /* SecurityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609BA37B2C80D3B2E1F7E709 /* SecurityTests.swift */; };
 		5D7D9CBAD5B4E485FCC14B56 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D49D31635CDABC0CA5DC9A28 /* Assets.xcassets */; };
 		5F87F73476D5B53868842EB9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F41AD9D81A1375D34D74C35 /* ContentView.swift */; };
-		73711C7A781C5FB24CE2E01F /* AIBackendManager+Generation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA31C531C85ED60B3A63EDC /* AIBackendManager+Generation.swift */; };
 		7C88D468E1DE8A1CD7C8DB10 /* ModernDesign.swift in Sources */ = {isa = PBXBuildFile; fileRef = F480C68AC7FA13A45BFA4175 /* ModernDesign.swift */; };
 		7F1188E2B07918A1F356D9C5 /* DashboardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3CDA8E3C22C79D2F262D64 /* DashboardManager.swift */; };
 		7F48999C87769CB494BC605D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C6FF8A50637D1846D995C6C5 /* Assets.xcassets */; };
@@ -31,8 +30,9 @@
 		82DB4A843732E3C265AF0E7C /* URLManagerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C4E891DA864F48C0B8C5001 /* URLManagerView.swift */; };
 		925EFE43B7A04029754B02CE /* WidgetDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7746425C2BAF4AB9649D5A9A /* WidgetDataTests.swift */; };
 		9B42B0F816141393D0037A45 /* WidgetData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94582F56762AB40E1796152 /* WidgetData.swift */; };
-		A54E99CE7ED33A4FC95D1154 /* AIBackendManager+Enhanced.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E41225039F5BF3CF3EB3D2 /* AIBackendManager+Enhanced.swift */; };
+		9FDC79F6653E519D6995D2C7 /* NovaAIKit in Frameworks */ = {isa = PBXBuildFile; productRef = 25A0AA6BD88CF4775E9F13FA /* NovaAIKit */; };
 		ACF21098FBFC1B37632250FB /* ModernDesign.swift in Sources */ = {isa = PBXBuildFile; fileRef = F480C68AC7FA13A45BFA4175 /* ModernDesign.swift */; };
+		B5D2BB432DAEA359264130BB /* AppAI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6B25447DC49528F8533EE7 /* AppAI.swift */; };
 		BBB5CB297951C21CC16DDEE9 /* DashboardScreensaverApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF1E507166B2C93B959BF1C /* DashboardScreensaverApp.swift */; };
 		C06A199939CFE95AD428EAC0 /* HealthMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403F59446C490BA0E3DCF8B9 /* HealthMonitor.swift */; };
 		C63272AC6A256A935E956ECD /* AppleTVDiscovery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859E3F99158981F8890007CD /* AppleTVDiscovery.swift */; };
@@ -87,26 +87,25 @@
 		3EF1E507166B2C93B959BF1C /* DashboardScreensaverApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardScreensaverApp.swift; sourceTree = "<group>"; };
 		403F59446C490BA0E3DCF8B9 /* HealthMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthMonitor.swift; sourceTree = "<group>"; };
 		475D7972370BC30DF56635B3 /* DashboardScreensaver.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DashboardScreensaver.entitlements; sourceTree = "<group>"; };
-		48A78EE32D27F6FBC41C1CB0 /* AIBackendManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIBackendManager.swift; sourceTree = "<group>"; };
 		48DB3237B08C5E3776913660 /* DashboardTVApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardTVApp.swift; sourceTree = "<group>"; };
-		4AF159A42D7421DE96882BAF /* AIBackendStatusMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIBackendStatusMenu.swift; sourceTree = "<group>"; };
 		609BA37B2C80D3B2E1F7E709 /* SecurityTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SecurityTests.swift; sourceTree = "<group>"; };
 		72AEF92D2142022EAFDF3349 /* AppleTVManagerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleTVManagerView.swift; sourceTree = "<group>"; };
 		73F10C02BACBE859CCD4DB03 /* DashboardScreensaver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DashboardScreensaver.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		75CEF54059AD3D2104FB67E5 /* DashboardScreensaverTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 1; path = DashboardScreensaverTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		75EE9B6FE133E902A9C1FFE5 /* AlertBriefing.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AlertBriefing.swift; sourceTree = "<group>"; };
 		7746425C2BAF4AB9649D5A9A /* WidgetDataTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WidgetDataTests.swift; sourceTree = "<group>"; };
 		7B3CDA8E3C22C79D2F262D64 /* DashboardManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardManager.swift; sourceTree = "<group>"; };
 		859E3F99158981F8890007CD /* AppleTVDiscovery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleTVDiscovery.swift; sourceTree = "<group>"; };
 		87F0F0FFCBDA0AEAF51C2BE4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8C4E891DA864F48C0B8C5001 /* URLManagerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLManagerView.swift; sourceTree = "<group>"; };
-		8CA31C531C85ED60B3A63EDC /* AIBackendManager+Generation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AIBackendManager+Generation.swift"; sourceTree = "<group>"; };
 		9394EFC16B9F0334A9732C7D /* AIAlertDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIAlertDetector.swift; sourceTree = "<group>"; };
 		977EEA32BBF08A00F395C847 /* ModelsTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ModelsTests.swift; sourceTree = "<group>"; };
+		9F6B25447DC49528F8533EE7 /* AppAI.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AppAI.swift; sourceTree = "<group>"; };
+		A41CC0FA79826C67EC08D9E6 /* AIKitAdoptionTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AIKitAdoptionTests.swift; sourceTree = "<group>"; };
 		B0990B8A598E0D5928B9C68F /* DashboardTV.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = DashboardTV.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDF704E445C59D6A2154A17C /* DashboardScreensaver Widget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "DashboardScreensaver Widget.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6FF8A50637D1846D995C6C5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D49D31635CDABC0CA5DC9A28 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		D5E41225039F5BF3CF3EB3D2 /* AIBackendManager+Enhanced.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AIBackendManager+Enhanced.swift"; sourceTree = "<group>"; };
 		D752ED18E5C2E46A8C5D9696 /* DashboardScreensaver_Widget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DashboardScreensaver_Widget.entitlements; sourceTree = "<group>"; };
 		E94582F56762AB40E1796152 /* WidgetData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetData.swift; sourceTree = "<group>"; };
 		ED398E04B033361025CF9964 /* DashboardWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardWebView.swift; sourceTree = "<group>"; };
@@ -115,6 +114,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		11C7CB7E8DB09247E214F98D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9FDC79F6653E519D6995D2C7 /* NovaAIKit in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BC1CB01F113EE586FAAB6386 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -137,6 +144,8 @@
 			isa = PBXGroup;
 			children = (
 				9394EFC16B9F0334A9732C7D /* AIAlertDetector.swift */,
+				9F6B25447DC49528F8533EE7 /* AppAI.swift */,
+				75EE9B6FE133E902A9C1FFE5 /* AlertBriefing.swift */,
 			);
 			path = AI;
 			sourceTree = "<group>";
@@ -147,6 +156,7 @@
 				609BA37B2C80D3B2E1F7E709 /* SecurityTests.swift */,
 				977EEA32BBF08A00F395C847 /* ModelsTests.swift */,
 				7746425C2BAF4AB9649D5A9A /* WidgetDataTests.swift */,
+				A41CC0FA79826C67EC08D9E6 /* AIKitAdoptionTests.swift */,
 			);
 			name = DashboardScreensaverTests;
 			path = DashboardScreensaverTests;
@@ -163,10 +173,6 @@
 		4145153E619410A35FB39E41 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
-				48A78EE32D27F6FBC41C1CB0 /* AIBackendManager.swift */,
-				D5E41225039F5BF3CF3EB3D2 /* AIBackendManager+Enhanced.swift */,
-				8CA31C531C85ED60B3A63EDC /* AIBackendManager+Generation.swift */,
-				4AF159A42D7421DE96882BAF /* AIBackendStatusMenu.swift */,
 				7B3CDA8E3C22C79D2F262D64 /* DashboardManager.swift */,
 				403F59446C490BA0E3DCF8B9 /* HealthMonitor.swift */,
 				3E8BB74A82649C71B20F1D6F /* PowerManager.swift */,
@@ -315,6 +321,7 @@
 				30F779DC2B54C05CEB78326A /* Sources */,
 				79D6E821DE850781A499CD69 /* Resources */,
 				76EE02FDA82819345DB7D915 /* Embed Foundation Extensions */,
+				11C7CB7E8DB09247E214F98D /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -322,6 +329,9 @@
 				B962A0B365525547EFD9CA2C /* PBXTargetDependency */,
 			);
 			name = DashboardScreensaver;
+			packageProductDependencies = (
+				25A0AA6BD88CF4775E9F13FA /* NovaAIKit */,
+			);
 			productName = DashboardScreensaver;
 			productReference = 73F10C02BACBE859CCD4DB03 /* DashboardScreensaver.app */;
 			productType = "com.apple.product-type.application";
@@ -375,6 +385,9 @@
 			);
 			mainGroup = C5544341614F3074513E4E61;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				BDB567413371695B89CEEEAE /* XCRemoteSwiftPackageReference "NovaAIKit" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = D5CFB4C6AA1322BF76B15CD4 /* Products */;
 			projectDirPath = "";
@@ -433,10 +446,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				7FC4EF532C0B0BDABE3B0CEF /* AIAlertDetector.swift in Sources */,
-				A54E99CE7ED33A4FC95D1154 /* AIBackendManager+Enhanced.swift in Sources */,
-				73711C7A781C5FB24CE2E01F /* AIBackendManager+Generation.swift in Sources */,
-				1A8A5D1B714D6161F8710338 /* AIBackendManager.swift in Sources */,
-				3B02DEA045170B0C95CCA54C /* AIBackendStatusMenu.swift in Sources */,
 				C63272AC6A256A935E956ECD /* AppleTVDiscovery.swift in Sources */,
 				F23426BBBAEB7B22C9C9C99B /* AppleTVManagerView.swift in Sources */,
 				5F87F73476D5B53868842EB9 /* ContentView.swift in Sources */,
@@ -452,6 +461,8 @@
 				82DB4A843732E3C265AF0E7C /* URLManagerView.swift in Sources */,
 				9B42B0F816141393D0037A45 /* WidgetData.swift in Sources */,
 				4A6AAAFF7E61ACDE5BAC8730 /* WidgetDataSync.swift in Sources */,
+				B5D2BB432DAEA359264130BB /* AppAI.swift in Sources */,
+				170E9481CE62EACD6F1ACFEB /* AlertBriefing.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -472,6 +483,7 @@
 				5B0FF21CF3F902145965B8C4 /* SecurityTests.swift in Sources */,
 				24B43E1D807F1690E46C7994 /* ModelsTests.swift in Sources */,
 				925EFE43B7A04029754B02CE /* WidgetDataTests.swift in Sources */,
+				5A83B45C89961CE17F47C684 /* AIKitAdoptionTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -574,7 +586,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = QRRCB8HB3W;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -588,7 +600,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 1.1.0;
+				MARKETING_VERSION = 1.2.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -696,7 +708,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = QRRCB8HB3W;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -716,7 +728,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 1.1.0;
+				MARKETING_VERSION = 1.2.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -851,6 +863,25 @@
 			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		BDB567413371695B89CEEEAE /* XCRemoteSwiftPackageReference "NovaAIKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kochj23/NovaAIKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		25A0AA6BD88CF4775E9F13FA /* NovaAIKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BDB567413371695B89CEEEAE /* XCRemoteSwiftPackageReference "NovaAIKit" */;
+			productName = NovaAIKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 576AAA6CCABDA438C9D42C17 /* Project object */;
 }

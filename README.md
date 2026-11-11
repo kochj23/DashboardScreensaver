@@ -1,13 +1,20 @@
 # Dashboard Screensaver
 
 [![Build](https://github.com/kochj23/DashboardScreensaver/actions/workflows/build.yml/badge.svg)](https://github.com/kochj23/DashboardScreensaver/actions)
-[![Version](https://img.shields.io/badge/version-1.1.0-blue.svg)](https://github.com/kochj23/DashboardScreensaver/releases)
+[![Version](https://img.shields.io/badge/version-1.2.0-blue.svg)](https://github.com/kochj23/DashboardScreensaver/releases)
 ![Platform](https://img.shields.io/badge/platform-macOS%2014%2B%20%7C%20tvOS%2017%2B-lightgrey.svg)
 ![Swift](https://img.shields.io/badge/swift-5.9-orange.svg)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
-![Tests](https://img.shields.io/badge/tests-85%20passed-brightgreen.svg)
+![Tests](https://img.shields.io/badge/tests-111%20passed-brightgreen.svg)
 
-A macOS application for rotating through multiple web dashboards with AI-powered alert detection, health monitoring, smooth scrolling, schedule-based groups, macOS widgets, Apple TV remote configuration, and a glassmorphic UI. Built for NOC displays, monitoring stations, kiosk environments, and smart home dashboards.
+A macOS app that rotates through web dashboards on a wall display or NOC screen. It watches each dashboard with
+on-device Vision (alert colours + OCR), writes a short **AI briefing** when something looks wrong (NovaAIKit: local
+Ollama/MLX/etc. or a keyed cloud backend, with a built-in fallback), checks dashboard health, follows time-based
+schedules, feeds a macOS widget, and pushes configuration to a tvOS companion app.
+
+- **Version:** 1.2.0 (build 2)
+- **Platforms:** macOS 14+ (app + widget), tvOS 17+ (DashboardTV companion)
+- **AI:** [NovaAIKit](https://github.com/kochj23/NovaAIKit) 1.0.0 — optional, off-switchable, keys only in the Keychain
 
 ---
 
@@ -15,23 +22,24 @@ A macOS application for rotating through multiple web dashboards with AI-powered
 
 - [Architecture](#architecture)
 - [Features](#features)
+- [AI](#ai)
 - [Requirements](#requirements)
 - [Installation](#installation)
+- [Building](#building)
 - [Usage](#usage)
 - [Keyboard Shortcuts](#keyboard-shortcuts)
-- [AI Alert Detection](#ai-alert-detection)
+- [Alert Detection (Vision)](#alert-detection-vision)
 - [Health Monitoring](#health-monitoring)
 - [Schedule-Based Rotation](#schedule-based-rotation)
 - [Apple TV Companion (DashboardTV)](#apple-tv-companion-dashboardtv)
 - [macOS Widget](#macos-widget)
 - [Local API Server](#local-api-server)
-- [AI Backend Manager](#ai-backend-manager)
 - [Security and Privacy](#security-and-privacy)
+- [Testing](#testing)
 - [Project Structure](#project-structure)
 - [Troubleshooting](#troubleshooting)
-- [Version History](#version-history)
+- [Changelog](#changelog)
 - [License](#license)
-- [Author](#author)
 
 ---
 
@@ -41,73 +49,263 @@ A macOS application for rotating through multiple web dashboards with AI-powered
 graph TB
     subgraph macOS["Dashboard Screensaver (macOS 14+)"]
         direction TB
-        CV[ContentView] --> DWV[DashboardWebView<br/>WKWebView + smooth scroll]
-        CV --> SV[SettingsView / URLManager / AppleTVManager]
-
+        CV[ContentView<br/>controls bar · alert overlay · AI status dot] --> DWV[DashboardWebView<br/>WKWebView + smooth scroll]
+        CV --> SV[SettingsView<br/>Timing · Display · Health · AI Detection · Schedules · AI]
         CV --> DM[DashboardManager<br/>URLs, groups, schedules, rotation]
-        DWV --> AAD[AIAlertDetector<br/>Vision OCR + color analysis]
-        SV --> ABM[AIBackendManager<br/>Ollama, MLX, TinyLLM, cloud APIs]
-
-        DM --> HM[HealthMonitor<br/>HEAD checks, failure tracking]
+        DWV -->|snapshot| AAD[AIAlertDetector<br/>Vision OCR + colour analysis]
+        AAD --> AB[AlertBriefing<br/>prompt · validator · built-in fallback]
+        AB --> AI[AppAI.shared<br/>NovaAIKit NovaAI]
+        SV --> NSV[NovaAISettingsView]
+        NSV --> AI
+        DM --> HM[HealthMonitor<br/>HEAD checks]
         DM --> PM[PowerManager<br/>IOKit sleep prevention]
         DM --> ATD[AppleTVDiscovery<br/>Bonjour + IP scan]
-
         DM --> WDS[WidgetDataSync<br/>App Group + WidgetKit]
-        DM --> NAS[NovaAPIServer<br/>port 37428, loopback]
+        NAS[NovaAPIServer<br/>127.0.0.1:37428]
     end
+
+    subgraph Kit["NovaAIKit 1.0.0"]
+        AI --> ENG[Engine: Auto failover · timeouts · retries]
+        AI --> KC[(Keychain<br/>com.jkoch.dashboardscreensaver.*)]
+    end
+    ENG --> LOCAL[Ollama · MLX · TinyChat · TinyLLM · OpenWebUI · Nova Gateway]
+    ENG -->|https + key| CLOUD[OpenRouter · OpenAI]
 
     subgraph Widget["Widget Extension"]
-        WDS --> WE[Small / Medium / Large<br/>Health ring, dashboard grid]
-    end
-
-    subgraph Shared["Shared/"]
-        Models[Models.swift]
-        MD[ModernDesign.swift]
-        WD[WidgetData.swift]
+        WDS --> WE[Small / Medium / Large]
     end
 
     subgraph tvOS["DashboardTV (tvOS 17+)"]
-        ATD -.->|Bonjour + HTTP| DTV[ConfigurationServer<br/>WKWebView rotation]
+        ATD -.->|Bonjour + HTTP| DTV[Configuration server<br/>WKWebView rotation]
     end
+```
 
-    DM --> Models
-    WDS --> WD
-    CV --> MD
+### Alert → briefing flow
+
+```mermaid
+sequenceDiagram
+    participant W as DashboardWebView
+    participant D as AIAlertDetector
+    participant B as AlertBriefing
+    participant K as NovaAI (AppAI.shared)
+    participant UI as Alert overlay
+    W->>D: page loaded, snapshot
+    D->>D: colour analysis + OCR keywords + matching lines
+    D->>UI: severity badge + keywords
+    alt result has alerts
+        D->>B: facts (dashboard, severity, colours, keywords, OCR lines)
+        B->>K: text(request, validate, fallback)
+        alt AI off / unreachable / reply rejected twice
+            K-->>B: built-in briefing (source "Built-in")
+        else AI answered and passed validation
+            K-->>B: briefing (source "AI · Ollama (model)")
+        end
+        B-->>UI: briefing text + source label + status dot
+    end
 ```
 
 ### Technology Stack
 
-| Layer              | Technology                                           |
-|--------------------|------------------------------------------------------|
-| Language           | Swift 5.9                                            |
-| UI Framework       | SwiftUI                                              |
-| Web Rendering      | WebKit (WKWebView)                                   |
-| AI / Vision        | Vision framework (VNRecognizeTextRequest, pixel analysis) |
-| Network Discovery  | Network.framework (NWBrowser, Bonjour/mDNS)         |
-| Power Management   | IOKit (IOPMAssertionCreateWithName)                  |
-| Notifications      | UserNotifications                                    |
-| Widgets            | WidgetKit + App Groups                               |
-| API Server         | Network.framework (NWListener, raw TCP/HTTP)         |
-| Credential Storage | macOS Keychain (Security framework)                  |
-| Platforms          | macOS 14.0+ (main app + widget), tvOS 17.0+ (companion) |
+| Layer              | Technology                                                  |
+|--------------------|-------------------------------------------------------------|
+| Language           | Swift 5.9                                                   |
+| UI                 | SwiftUI                                                     |
+| Web rendering      | WebKit (WKWebView)                                          |
+| Alert detection    | Vision (VNRecognizeTextRequest) + pixel analysis, on-device |
+| AI briefing        | NovaAIKit 1.0.0 (Swift Package)                             |
+| Network discovery  | Network.framework (NWBrowser, Bonjour/mDNS)                 |
+| Power management   | IOKit (IOPMAssertionCreateWithName)                         |
+| Notifications      | UserNotifications                                           |
+| Widgets            | WidgetKit + App Groups                                      |
+| API server         | Network.framework (NWListener)                              |
+| Secrets            | macOS Keychain (via NovaAIKit)                              |
 
 ---
 
 ## Features
 
 ### Dashboard Rotation
-- Add unlimited dashboard URLs, organized into color-coded groups.
-- Configurable rotation interval (5--300 seconds) with page-load delay, smooth scroll animation, and post-scroll dwell time.
-- Extended display time is automatically applied when alerts are detected.
-- Import URLs from CSV/TXT files or remote HTTP configuration endpoints.
+- Unlimited dashboard URLs in colour-coded groups.
+- Rotation interval 5–300 s, page-load delay, smooth scroll, post-scroll dwell.
+- Extra display time when alerts are detected (Low +5 s … Critical +30 s).
+- Import URLs from CSV/TXT files or a remote HTTP list.
 
-### AI Alert Detection (Vision Framework)
-- Screenshot-based color analysis detects red, orange, and yellow alert regions.
-- OCR text recognition scans for keywords: critical, error, failed, failure, down, alert, warning, danger, urgent, emergency, outage, offline, unhealthy, degraded, incident.
-- Content change detection compares screenshots between rotations.
-- System notifications for high and critical alerts; optional auto-pause on critical.
+### Alert Detection and AI Briefing
+- Screenshot colour analysis for red, orange and yellow alert regions.
+- OCR keyword detection (critical, error, failed, down, outage, degraded, …) and content-change detection.
+- **AI briefing:** when a dashboard is flagged, a one- or two-sentence note on what looks wrong and what to check
+  first, written from the Vision facts and the OCR lines that contain alert words. Shown in the alert overlay with
+  where it came from ("AI · Ollama (qwen3:8b)" or "Built-in").
+- Notifications for High/Critical, optional auto-pause on Critical.
 
 ### Health Monitoring
+- Background HEAD checks, success rates, consecutive-failure tracking, auto-skip of unhealthy URLs, recovery
+  notifications.
+
+### Schedule-Based Groups
+- Business Hours / After Hours / Weekend or custom profiles, overnight ranges, day-of-week filters, priorities.
+
+### Apple TV Remote Configuration
+- Finds DashboardTV instances via Bonjour (IP scan fallback) and pushes groups and settings over HTTP.
+
+### macOS Widget
+- Small (health ring), Medium (current dashboard + countdown), Large (grid + controls).
+
+### Display
+- Glassmorphic UI, dark-mode CSS injection, screen sleep prevention, kiosk full screen, alert overlay.
+
+### Local API
+- `127.0.0.1:37428` (loopback only): `/api/status`, `/api/ping`.
+
+---
+
+## AI
+
+AI in Dashboard Screensaver comes from [NovaAIKit](https://github.com/kochj23/NovaAIKit) 1.0.0 — the same AI feature
+set every app in the family uses.
+
+| | |
+|---|---|
+| **Where it's used** | The alert briefing in the alert overlay. Vision detection itself is on-device and never uses an AI backend. |
+| **On/off** | Settings → **AI** → *Use AI*. Off = nothing is sent anywhere; alerts show the built-in Vision summary. |
+| **Fallback** | Deterministic: "Critical alert on Payments API: error, down. "checkout-service DOWN" Content changed since the last rotation." Used when AI is off, every backend is down, or the reply is rejected twice. |
+| **Backends** | Auto (failover), Ollama, MLX, TinyLLM, TinyChat, OpenWebUI, Nova Gateway, OpenRouter, OpenAI. Model picker and editable URL per backend; *Test connection*. |
+| **Auto failover** | Ollama → MLX → TinyChat → TinyLLM → OpenWebUI → Nova Gateway → OpenRouter → OpenAI, with per-request timeouts, bounded retries (408/429/5xx) and a 60 s skip for a server that just failed. |
+| **Validation** | Reply must be plain text, 12–280 characters, and every number in it must appear in the Vision facts (no invented error rates or host counts). A rejected reply is retried once with the reason, then the built-in briefing is used. |
+| **Keys** | Only in the Keychain: service `com.jkoch.dashboardscreensaver.<backend>`, account `apiKey`. Keys are only ever sent over https. The settings screen shows "stored", never the key. |
+| **Status** | `NovaAIStatusIndicator` in the controls bar (dot + backend/model/latency; click to re-check) and next to each briefing. |
+| **Migration** | On first launch, settings of the old built-in `AIBackendManager` (backend, URLs, Ollama model, on/off) are imported; a plaintext OpenAI key in UserDefaults (`AIBackend_OpenAI_Key`) is moved into the Keychain and removed; the old Keychain item `com.jordankoch.DashboardScreensaver` / `AIBackend_OpenAI_Key` is moved; secrets of the removed Google Cloud, Azure, AWS and IBM Watson backends are deleted. |
+
+Google Cloud, Azure, AWS and IBM Watson backends were removed in 1.2.0 (they were stubs). Use OpenRouter or the Nova
+Gateway to reach hosted models. Image-generation backends (ComfyUI, Automatic1111, SwarmUI) were never used by this
+app and are gone with the old manager.
+
+The tvOS companion (DashboardTV) has no AI features; it only displays what the Mac pushes to it.
+
+---
+
+## Requirements
+
+- macOS 14.0 (Sonoma) or later
+- Xcode 26+ to build (NovaAIKit is fetched by Swift Package Manager)
+- Optional: a local LLM server (Ollama on `http://localhost:11434` is the default) or an OpenRouter/OpenAI key for
+  AI briefings
+- DashboardTV: Apple TV with tvOS 17+, same local network
+
+---
+
+## Installation
+
+### From DMG
+
+1. Open `DashboardScreensaver-v1.2.0-build2.dmg`.
+2. Drag **DashboardScreensaver** onto **Applications**.
+3. Launch it from Applications.
+
+Release builds are also kept in `/Volumes/Data/xcode/binaries/<date>-DashboardScreensaver-v<version>/` and on the NAS
+under `/Volumes/NAS/binaries/`.
+
+---
+
+## Building
+
+```bash
+git clone git@github.com:kochj23/DashboardScreensaver.git
+cd DashboardScreensaver
+
+# macOS app (resolves NovaAIKit automatically)
+xcodebuild -project DashboardScreensaver.xcodeproj -scheme DashboardScreensaver -configuration Release build
+
+# tvOS companion (optional)
+xcodebuild -project DashboardScreensaver.xcodeproj -scheme DashboardTV -configuration Release \
+           -destination 'generic/platform=tvOS' build
+```
+
+The Release build has zero compiler warnings.
+
+---
+
+## Usage
+
+### Getting Started
+
+1. Launch Dashboard Screensaver.
+2. Add dashboard URLs via the URL Manager (Cmd+N or click "Add Dashboard URL").
+3. Organize dashboards into color-coded groups (Monitoring, Business, Security, General, or custom).
+4. Configure rotation timing in Settings (Cmd+,).
+5. Press Space or Cmd+P to start rotation.
+6. Press F or Ctrl+F for full-screen kiosk mode.
+
+### Adding Dashboards
+
+Click the list icon or press Cmd+N, then enter a URL and optionally assign it to a group. Alternatively, import from a file:
+
+- **CSV/TXT**: one URL per line.
+- **Remote config**: an HTTP/HTTPS URL pointing to a line-separated list.
+- **Auto-load on first launch**: place a `config.txt` file next to the app bundle, in your home directory, or at `~/.dashboardscreensaver/config.txt`.
+
+If no configuration is found, the app loads default status pages (GitHub, AWS, Google Cloud).
+
+### Setting Up Schedules
+
+1. Open Settings, then the Schedules tab.
+2. Enable "Schedule-Based Rotation."
+3. Create schedule profiles with time ranges and day-of-week filters.
+4. Assign dashboard groups to each profile.
+5. Higher-priority profiles take precedence when multiple are active.
+
+Default profiles: Business Hours (Mon--Fri 09:00--17:00), After Hours (Mon--Fri 17:00--09:00), Weekend (Sat--Sun all day).
+
+### Configuring Apple TVs
+
+1. Install DashboardTV on your Apple TVs.
+2. Open the Apple TV Manager (Cmd+T).
+3. Click "Scan Network" to discover devices via Bonjour (with IP range fallback).
+4. Select a device, choose a dashboard group, and push the configuration.
+
+---
+
+## Keyboard Shortcuts
+
+| Shortcut      | Action                  |
+|---------------|-------------------------|
+| Space         | Play / Pause rotation   |
+| Right Arrow   | Next dashboard          |
+| Left Arrow    | Previous dashboard      |
+| Up / Home     | First dashboard         |
+| Down / End    | Last dashboard          |
+| N             | Next dashboard          |
+| P             | Previous dashboard      |
+| R             | Reload current page     |
+| D             | Toggle dark mode CSS    |
+| F / Ctrl+F    | Toggle full screen      |
+| Cmd+,         | Open Settings           |
+| Cmd+N         | Add Dashboard URL       |
+| Cmd+I         | Import from file        |
+| Cmd+]         | Next dashboard          |
+| Cmd+[         | Previous dashboard      |
+| Cmd+P         | Toggle rotation         |
+| Cmd+T         | Apple TV Manager        |
+| Cmd+/         | Keyboard shortcuts help |
+| Esc           | Exit full screen        |
+
+---
+
+## Alert Detection (Vision)
+
+`AIAlertDetector` snapshots each dashboard after it loads and analyses it on-device:
+
+| Signal | How | Notes |
+|--------|-----|-------|
+| Red / orange / yellow regions | every 4th pixel classified by RGB thresholds | severity from the percentage vs. the alert threshold (default 5%) |
+| Alert words | `VNRecognizeTextRequest` (fast) | keywords + up to 8 recognised lines containing them (fed to the AI briefing) |
+| Content change | every 10th pixel vs. the previous snapshot | >5% changed sets the content-changed flag |
+
+Severity ≥ High sends a notification (Critical uses the critical sound); Critical can pause rotation.
+
+---
+
+## Health Monitoring
 - Background HEAD requests check URL availability at configurable intervals.
 - Tracks success rates, consecutive failures, and average load times.
 - Automatically skips unhealthy URLs after a configurable failure threshold.
@@ -363,40 +561,36 @@ The server uses `NWListener` from Network.framework with raw TCP request parsing
 
 ---
 
-## AI Backend Manager
+## Security and Privacy
 
-The standardized `AIBackendManager` auto-detects available AI services on the local machine and supports cloud providers:
-
-| Backend        | Protocol / Port     | Check Method                |
-|----------------|---------------------|-----------------------------|
-| Ollama         | HTTP :11434         | GET /api/tags               |
-| MLX            | Local binary        | File existence check        |
-| TinyLLM        | HTTP :8000          | GET /v1/models              |
-| TinyChat       | HTTP :8000          | GET /api/health             |
-| OpenWebUI      | HTTP :8080 or :3000 | GET /                       |
-| ComfyUI        | HTTP :8188          | GET /system_stats           |
-| Automatic1111  | HTTP :7860          | GET /sdapi/v1/sd-models     |
-| SwarmUI        | HTTP :7801          | GET /API/ListModels         |
-| OpenAI         | Cloud               | API key presence (Keychain) |
-| Google Cloud   | Cloud               | API key presence (Keychain) |
-| Azure          | Cloud               | API key + endpoint (Keychain) |
-| AWS            | Cloud               | Access key + secret (Keychain) |
-| IBM Watson     | Cloud               | API key + URL (Keychain)    |
-
-All cloud API keys are stored exclusively in macOS Keychain. Existing keys in UserDefaults are automatically migrated to Keychain on first launch and removed from UserDefaults.
-
-The manager includes auto-fallback (tries the next available backend on failure), per-backend performance metrics, and a SwiftUI configuration view.
+- **No sandbox:** needed for network access, IOKit power management and the loopback API server. Hardened runtime.
+- **Local data:** dashboards and settings live in UserDefaults; AI settings in UserDefaults contain no secrets.
+- **Keys:** AI keys only in the Keychain (`com.jkoch.dashboardscreensaver.*`), only sent over https. 1.2.0 removes a
+  plaintext OpenAI key and the old Google/Azure/AWS/IBM secrets left in UserDefaults by the previous AI manager.
+- **What leaves the Mac:** nothing unless AI is on. With AI on, the briefing request carries the dashboard name, the
+  alert words, colour percentages and the OCR lines that contain alert words — to the backend you chose (local by
+  default). Screenshots never leave the Mac.
+- **Loopback API:** `127.0.0.1` only.
 
 ---
 
-## Security and Privacy
+## Testing
 
-- **No Sandbox**: The app runs without App Sandbox to allow full network access, IOKit power management, and local API server binding.
-- **Hardened Runtime**: Code-signed with hardened runtime enabled.
-- **Local Only**: All dashboard data and settings are stored locally via UserDefaults.
-- **Keychain Storage**: All API keys and credentials are stored in macOS Keychain using the Security framework -- never in UserDefaults, plists, or files.
-- **No Cloud Telemetry**: No usage tracking, analytics, or data sent to external services. AI alert detection uses the on-device Vision framework exclusively.
-- **Loopback API**: The local HTTP API binds to 127.0.0.1 only -- it is not accessible from other machines on the network.
+111 XCTest cases, all passing (`xcodebuild test -project DashboardScreensaver.xcodeproj -scheme DashboardScreensaverTests`).
+
+| Suite | Tests | Covers |
+|-------|------:|--------|
+| Model / widget suites (DashboardURL, schedules, severities, widget data, …) | 78 | data models, schedules, codable, widget health |
+| SecurityTests | 7 | no hardcoded credentials or passwords, AI keys via NovaAIKit, loopback API, safe URLs, headers |
+| AISecurityTests | 6 | Keychain service names, plaintext key leaves UserDefaults, old Keychain item migrated once, keys not in settings, no key over http, no old AI client left |
+| AIPerformanceTests | 3 | AI-off fallback is immediate, offline fallback doesn't hang, huge OCR input is capped |
+| AIRetryTests | 3 | 503 retried, rejected reply asked again, twice-rejected → built-in |
+| AIUnitTests | 7 | fallback text, validator accept/reject, `<think>` stripping, facts, clamping, backend catalogue |
+| AIIntegrationTests | 2 | Ollama `/api/chat` round trip through the kit, legacy settings import |
+| AIFunctionalTests | 2 | every severity works with AI off; offline → built-in |
+| AIFrameTests | 3 | status/toggle/source state, settings + status views render, detector initial state |
+
+AI tests use in-memory settings and keys and a stub `URLProtocol`; they never touch the real Keychain or network.
 
 ---
 
@@ -404,140 +598,44 @@ The manager includes auto-fallback (tries the next available backend on failure)
 
 ```
 DashboardScreensaver/
-    DashboardScreensaver/
-        DashboardScreensaverApp.swift           App entry point, menu commands, AppState
-        NovaAPIServer.swift                     Local HTTP API on port 37428
-        DashboardScreensaver.entitlements       App Group entitlement
-        AI/
-            AIAlertDetector.swift                Vision-based color + OCR alert detection
-        Managers/
-            DashboardManager.swift              URL/group/schedule storage, rotation state
-            HealthMonitor.swift                 Background URL health checks
-            PowerManager.swift                  IOKit screen sleep prevention
-            WidgetDataSync.swift                App Group data sync for widget
-            AIBackendManager.swift              AI backend detection and Keychain storage
-            AIBackendManager+Enhanced.swift      Auto-fallback, metrics, notifications
-            AIBackendManager+Generation.swift    Text generation via Ollama/TinyLLM/etc.
-            AIBackendStatusMenu.swift           SwiftUI status menu component
-        Network/
-            AppleTVDiscovery.swift              Bonjour + IP scan for Apple TV devices
-        Views/
-            ContentView.swift                   Main dashboard display and controls
-            DashboardWebView.swift              WKWebView wrapper with scroll animation
-            SettingsView.swift                  Configuration interface
-            URLManagerView.swift                Dashboard URL CRUD
-            AppleTVManagerView.swift            Apple TV device management
-        Assets.xcassets/
-    Shared/
-        Models.swift                            Data models (DashboardURL, DashboardGroup,
-                                                ScheduleProfile, AlertSeverity, etc.)
-        ModernDesign.swift                      Glassmorphic UI components (TopGUI system)
-        WidgetData.swift                        Widget data models and health enums
-    DashboardScreensaver Widget/
-        DashboardScreensaverWidget.swift        WidgetKit timeline provider and views
-        SharedDataManager.swift                 Reads widget data from App Group
-        DashboardScreensaver_Widget.entitlements
-    DashboardTV/
-        DashboardTVApp.swift                    tvOS companion: config server, rotation
-        Views/
-            TVContentView.swift                 tvOS dashboard display
-    DashboardScreensaver.xcodeproj
-    project.yml                                 XcodeGen project specification
-    LICENSE                                     MIT License
-    CHANGELOG.md
-    SECURITY.md
-    CONTRIBUTING.md
-    CODE_OF_CONDUCT.md
+    DashboardScreensaverApp.swift        App entry, menu commands, AppState
+    NovaAPIServer.swift                  Loopback HTTP API (port 37428)
+    AI/
+        AppAI.swift                      The app's NovaAI instance + one-time legacy migration
+        AlertBriefing.swift              Briefing prompt, validator, built-in fallback
+        AIAlertDetector.swift            Vision colour + OCR detection, triggers the briefing
+    Managers/                            DashboardManager, HealthMonitor, PowerManager, WidgetDataSync
+    Network/AppleTVDiscovery.swift       Bonjour + IP scan
+    Views/                               ContentView, DashboardWebView, SettingsView, URLManagerView, AppleTVManagerView
+Shared/                                  Models, ModernDesign, WidgetData (macOS + tvOS)
+DashboardScreensaver Widget/             WidgetKit extension
+DashboardTV/                             tvOS companion
+DashboardScreensaverTests/               XCTest suites (incl. AIKitAdoptionTests.swift)
 ```
 
 ---
 
 ## Troubleshooting
 
-### Dashboards Not Loading
-- Verify URLs are accessible in a regular browser.
-- Check network connectivity.
-- Authenticated dashboards require manual login in the WebView first.
-- Try disabling dark mode CSS injection (it can interfere with some sites).
-
-### AI Detection Not Working
-- Ensure AI Detection is enabled in Settings.
-- Check that the alert threshold is not set too high (default is 5%).
-- Dashboards with minimal color indicators may not trigger detection.
-- OCR requires legible text in the rendered page.
-
-### Apple TVs Not Found
-- Confirm DashboardTV is running on the Apple TV.
-- All devices must be on the same local network.
-- Try the manual IP range scan option in the Apple TV Manager.
-- Verify your firewall allows Bonjour/mDNS traffic (UDP port 5353).
-
-### Screen Sleep Not Prevented
-- Enable "Prevent Screen Sleep" in Settings.
-- Check System Settings > Energy for conflicting power management.
-- The app must be running in the foreground (not minimized).
-
-### Widget Not Updating
-- Confirm the app is running -- widget data is written on each rotation event.
-- Check that the App Group entitlement (`group.com.jordankoch.DashboardScreensaver`) is correctly configured in both targets.
-- Widget refresh is limited by the system; updates occur every 60 seconds during rotation and every 5 minutes when paused.
+| Symptom | Fix |
+|---------|-----|
+| Dashboards don't load | Check the URL in a browser; log in once in the web view for authenticated dashboards; try without dark-mode CSS. |
+| No alerts detected | AI Detection on (Settings → AI Detection); lower the threshold; OCR needs legible text. |
+| Briefing always says "Built-in" | Settings → AI: *Use AI* on, pick a backend, *Test connection*. With Auto, start Ollama (`ollama serve`) or add an OpenRouter key. |
+| Status dot orange | The selected backend is unreachable; click the dot to re-check. |
+| Apple TVs not found | DashboardTV running, same network, Bonjour (UDP 5353) allowed; try the IP scan. |
+| Widget not updating | App running; App Group `group.com.jordankoch.DashboardScreensaver` on both targets. |
 
 ---
 
-## Testing
+## Changelog
 
-The project includes a comprehensive XCTest suite with 85 tests covering data models, schedule logic, widget data, and security.
+See [CHANGELOG.md](CHANGELOG.md). Highlights:
 
-### Test Suites
-
-| Suite | Tests | Coverage |
-|-------|-------|----------|
-| DashboardURLTests | 10 | URL init, name extraction, codable, hashable |
-| URLHealthStatusTests | 4 | Display names, icons, raw values, codable |
-| DashboardGroupTests | 3 | Init, defaults, codable |
-| ScheduleProfileTests | 9 | Time ranges, day descriptions, isActive (business hours, overnight, disabled days), codable |
-| DayOfWeekTests | 5 | Calendar weekday mapping, short/full names, comparable |
-| AlertSeverityTests | 4 | Display names, extra display time, comparable, codable |
-| DashboardAnalysisResultTests | 4 | hasAlerts, summaryText (none, critical+keywords) |
-| AppleTVDeviceTests | 4 | Init, baseURL, custom port, codable |
-| DashboardSettingsTests | 2 | Default values, codable |
-| ColorExtensionTests | 5 | Valid hex, no-hash, invalid, empty, whitespace |
-| DashboardWidgetDataTests | 5 | Health percent, overall health states, placeholder/empty, codable |
-| DashboardHealthTests | 4 | Labels, color hex, icon names, codable |
-| WidgetDashboardTests | 2 | Init, codable |
-| WidgetURLHealthTests | 2 | Color hex values, dot character |
-| SecurityTests | 7 | No hardcoded credentials, no plaintext passwords, Keychain usage, loopback API binding, safe URL construction, HTTP response security headers |
-
-### Running Tests
-
-```bash
-xcodebuild test -project DashboardScreensaver.xcodeproj \
-  -scheme DashboardScreensaverTests \
-  -destination 'platform=macOS'
-```
-
----
-
-## Version History
-
-### v1.1.0 (March 2026)
-- macOS Widget support (small, medium, large) via WidgetKit.
-- App Group data sync for live rotation state in widgets.
-
-### v1.0.0 (January 2026)
-- Initial release.
-- Consolidated features from SiteRotator, SiteRotator-Swift, Site Rotator 2.0, Site Screensaver 2.0, and Dashboard Rotator.
-- AI alert detection (Vision framework color analysis + OCR).
-- Health monitoring with automatic unhealthy URL skipping.
-- Schedule-based group rotation.
-- Apple TV remote configuration via Bonjour.
-- Smooth scrolling animation with ease-in-out curve.
-- Glassmorphic UI (TopGUI design system).
-- Full keyboard navigation for kiosk operation.
-- AI backend manager with Keychain credential storage.
-- Local API server on port 37428.
-- Dark mode CSS injection.
-- IOKit screen sleep prevention.
+- **1.2.0** — AI migrated to NovaAIKit 1.0.0: AI alert briefing with built-in fallback and validation, AI settings
+  tab, status indicator, Keychain-only keys, legacy key migration; Google/Azure/AWS/IBM backends removed.
+- **1.1.0** — macOS widget (small/medium/large), App Group sync.
+- **1.0.0** — Initial release.
 
 ---
 

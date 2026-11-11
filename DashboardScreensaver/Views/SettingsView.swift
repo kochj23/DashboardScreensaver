@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import NovaAIKit
 
 struct SettingsView: View {
     @Environment(\.dismiss) private var dismiss
@@ -41,11 +42,22 @@ struct SettingsView: View {
                     Text("Health").tag(2)
                     Text("AI Detection").tag(3)
                     Text("Schedules").tag(4)
+                    Text("AI").tag(5)
                 }
                 .pickerStyle(.segmented)
                 .padding()
 
                 // Content
+                if selectedTab == 5 {
+                    // NovaAIKit settings: on/off, backend, URLs, models, Keychain keys, test connection.
+                    NovaAISettingsView(
+                        ai: AppAI.shared,
+                        footer: "AI writes a short briefing when Vision flags a dashboard. When AI is off or unreachable, "
+                            + "the built-in Vision summary is shown instead."
+                    )
+                    .formStyle(.grouped)
+                    .padding(.horizontal)
+                } else {
                 ScrollView {
                     switch selectedTab {
                     case 0:
@@ -63,6 +75,7 @@ struct SettingsView: View {
                     }
                 }
                 .padding()
+                }
             }
         }
         .frame(width: 600, height: 500)
@@ -220,7 +233,8 @@ struct SettingsView: View {
                 Toggle("Enable AI Detection", isOn: $dashboardManager.settings.enableAIDetection)
                     .tint(ModernColors.accentCyan)
 
-                Text("Uses Vision framework for color analysis and OCR to detect alerts in dashboards")
+                Text("Uses Vision framework for color analysis and OCR to detect alerts in dashboards. "
+                     + "AI briefings are configured in the AI tab.")
                     .font(.caption)
                     .foregroundColor(ModernColors.textTertiary)
             }

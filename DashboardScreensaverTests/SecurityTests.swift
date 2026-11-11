@@ -92,25 +92,20 @@ final class SecurityTests: XCTestCase {
 
     // MARK: - API Key Storage
 
-    /// Verify AIBackendManager uses Keychain for cloud API keys
+    /// Verify AI API keys go through NovaAIKit (Keychain service com.jkoch.dashboardscreensaver.*) and the
+    /// app keeps no Keychain or key-storage code of its own for AI.
     func testAPIKeysUseKeychain() throws {
         let projectDir = findProjectDirectory()
         guard let dir = projectDir else { return }
 
-        // Check that AIBackendManager.swift references Keychain
-        let aiBackendPath = dir + "/DashboardScreensaver/Managers/AIBackendManager.swift"
-        guard let content = try? String(contentsOfFile: aiBackendPath, encoding: .utf8) else {
-            return
-        }
-
-        XCTAssertTrue(content.contains("saveToKeychain"), "AIBackendManager should use saveToKeychain for credential storage")
-        XCTAssertTrue(content.contains("loadFromKeychain"), "AIBackendManager should use loadFromKeychain for credential retrieval")
-        XCTAssertTrue(content.contains("kSecClass"), "AIBackendManager should use Security framework Keychain APIs")
-        XCTAssertTrue(content.contains("SecItemAdd"), "AIBackendManager should use SecItemAdd for Keychain storage")
-        XCTAssertTrue(content.contains("SecItemCopyMatching"), "AIBackendManager should use SecItemCopyMatching for Keychain retrieval")
-
-        // Verify migration from UserDefaults is implemented
-        XCTAssertTrue(content.contains("migrateAPIKeysFromUserDefaults"), "AIBackendManager should migrate keys from UserDefaults to Keychain")
+        let appAIPath = dir + "/DashboardScreensaver/AI/AppAI.swift"
+        let content = try String(contentsOfFile: appAIPath, encoding: .utf8)
+        XCTAssertTrue(content.contains("import NovaAIKit"), "AppAI should use NovaAIKit")
+        XCTAssertTrue(content.contains("migrateFromLegacyAIBackendManager"), "AppAI should move plaintext keys out of UserDefaults")
+        XCTAssertTrue(content.contains("migrateLegacyKey"), "AppAI should migrate the old Keychain item")
+        XCTAssertFalse(content.contains("SecItemAdd"), "AI keys must be stored by NovaAIKit, not by app code")
+        XCTAssertFalse(content.contains("UserDefaults.standard.set"), "AI keys must never be written to UserDefaults")
+        XCTAssertFalse(FileManager.default.fileExists(atPath: dir + "/DashboardScreensaver/Managers/AIBackendManager.swift"))
     }
 
     // MARK: - Nova API Server Security
@@ -216,6 +211,8 @@ final class SecurityTests: XCTestCase {
     private func findProjectDirectory() -> String? {
         // Try common locations
         let paths = [
+            // This checkout (the test file lives in <repo>/DashboardScreensaverTests/).
+            URL(fileURLWithPath: #filePath).deletingLastPathComponent().deletingLastPathComponent().path,
             "/Volumes/Data/xcode/DashboardScreensaver",
             Bundle.main.bundlePath + "/../../.."
         ]

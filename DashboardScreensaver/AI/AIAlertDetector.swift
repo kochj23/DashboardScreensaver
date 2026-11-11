@@ -13,6 +13,7 @@ import Vision
 import AppKit
 import Combine
 import UserNotifications
+import NovaAIKit
 
 /// Detects alerts in dashboard screenshots using Vision framework
 @MainActor
@@ -23,6 +24,9 @@ class AIAlertDetector: ObservableObject {
 
     @Published var lastAnalysisResult: DashboardAnalysisResult?
     @Published var isAnalyzing: Bool = false
+    /// AI (or built-in) briefing for `lastAnalysisResult` when it has alerts.
+    @Published var lastBriefing: NovaAIResult<String>?
+    @Published var isBriefing: Bool = false
 
     // MARK: - Private Properties
 
@@ -50,7 +54,7 @@ class AIAlertDetector: ObservableObject {
         let colorAnalysis = analyzeColors(in: image)
 
         // Detect text via OCR
-        let detectedKeywords = await detectAlertText(in: image)
+        let (detectedKeywords, alertLines) = await detectAlertText(in: image)
 
         // Check for content changes
         let contentChanged = checkForContentChange(image, dashboardId: dashboardId)
@@ -78,6 +82,7 @@ class AIAlertDetector: ObservableObject {
         )
 
         lastAnalysisResult = result
+        lastBriefing = nil
 
         // Send notification if critical
         if severity >= .high && DashboardManager.shared.settings.notifyOnAlert {
@@ -87,6 +92,16 @@ class AIAlertDetector: ObservableObject {
         // Pause rotation if critical and setting enabled
         if severity == .critical && DashboardManager.shared.settings.pauseOnCritical {
             DashboardManager.shared.pauseRotation()
+        }
+
+        if result.hasAlerts {
+            let name = DashboardManager.shared.dashboards.first { $0.id == dashboardId }?.name ?? "dashboard"
+            let input = AlertBriefing.Input(dashboardName: name, result: result, alertLines: alertLines)
+            isBriefing = true
+            let briefing = await AlertBriefing.brief(input, ai: AppAI.shared)
+            isBriefing = false
+            // Only publish if no newer analysis replaced this one meanwhile.
+            if lastAnalysisResult?.id == result.id { lastBriefing = briefing }
         }
 
         return result
@@ -161,30 +176,37 @@ class AIAlertDetector: ObservableObject {
 
     // MARK: - OCR Text Detection
 
-    private func detectAlertText(in image: CGImage) async -> [String] {
+    /// Alert keywords found by OCR, plus the recognised lines that contain them (input for the AI briefing).
+    private func detectAlertText(in image: CGImage) async -> ([String], [String]) {
         return await withCheckedContinuation { continuation in
             let request = VNRecognizeTextRequest { request, error in
                 guard error == nil,
                       let observations = request.results as? [VNRecognizedTextObservation] else {
-                    continuation.resume(returning: [])
+                    continuation.resume(returning: ([], []))
                     return
                 }
 
                 var foundKeywords: [String] = []
+                var alertLines: [String] = []
 
                 for observation in observations {
                     guard let candidate = observation.topCandidates(1).first else { continue }
 
                     let text = candidate.string.lowercased()
+                    var lineHasKeyword = false
 
-                    for keyword in self.alertKeywords {
-                        if text.contains(keyword) && !foundKeywords.contains(keyword) {
+                    for keyword in self.alertKeywords where text.contains(keyword) {
+                        lineHasKeyword = true
+                        if !foundKeywords.contains(keyword) {
                             foundKeywords.append(keyword)
                         }
                     }
+                    if lineHasKeyword && alertLines.count < AlertBriefing.maxLines {
+                        alertLines.append(candidate.string)
+                    }
                 }
 
-                continuation.resume(returning: foundKeywords)
+                continuation.resume(returning: (foundKeywords, alertLines))
             }
 
             request.recognitionLevel = .fast
@@ -195,7 +217,7 @@ class AIAlertDetector: ObservableObject {
             do {
                 try handler.perform([request])
             } catch {
-                continuation.resume(returning: [])
+                continuation.resume(returning: ([], []))
             }
         }
     }
